@@ -1,0 +1,3 @@
+sanjivikaElectronics.controller('AddGodownCtrl', function () {
+ 
+     });

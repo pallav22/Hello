@@ -1,0 +1,107 @@
+<style type="text/css">
+#accordion {
+/* width:90%;*/
+ margin:10px auto;
+ border:2px solid white;
+ -webkit-box-shadow:0px 1px 3px rgba(0,0,0,0.4);
+ -moz-box-shadow:0px 1px 3px rgba(0,0,0,0.4);
+ box-shadow:0px 1px 3px rgba(0,0,0,0.4);
+}
+
+#accordion h2 {
+ cursor:pointer;
+ margin:0px 0px;
+ padding:16px 15px;
+ background-color:black;
+ font:bold 11px Verdana,Arial,Sans-Serif;
+ color:white;
+ text-shadow:0px 1px 0px rgba(0,0,0,0.4);
+}
+
+#accordion .content {
+ background-color:white;;
+ padding:10px 15px;
+ color:black;
+ height:auto; 
+ padding-top: 2em;   
+}
+
+#accordion h2.active {
+ background-color:rgba(51, 122, 183, 0.68);
+}
+
+ </style>
+   <h2 >Add Stock</h2> 
+ <div id="accordion">
+    <h2>Add Brand</h2>
+    <div class="content">
+ <form class="well" name="formTest" ng-submit="save()">
+                      <div class="form-group">
+                           <label for="name">Brand Name</label>
+                          <input type="name" class="form-control" id="name" ng-model="brand" placeholder="Enter Brand Name" required />
+                     </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+    </div>
+    <h2>Add Product</h2>
+    <div class="content">
+                  <form class="well" name="formTest" ng-submit="saveProduct()">
+                      <div class="form-group">
+                               <label for="name"> Select Brand</label>
+                                <select class="form-control" ng-model="SelectedBrand">
+                                          <option  selected  ng-repeat="p in brandsDropDown" value="{{p.id}}" class="form-control">{{p.brandName}}</option>         
+                                 </select>
+                                    <label for="name"> Product Name</label>
+                                      <input type="name" class="form-control" id="name" ng-model="Product" placeholder="Enter Product Name" required />
+                        </div>
+                                      <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+    </div>
+    <h2>Add Godown</h2>
+    <div class="content">
+                    <form class="well" name="formTest" ng-submit="saveGodown()">
+                                  <div class="form-group">
+                                      <label for="name">Godown Name</label>
+                                      <input type="name" class="form-control" id="godown" ng-model="Godown" placeholder="Enter Godown Name" required />
+                                  </div>
+                                  <p>{{GodownMsg}}</p>
+                                  <button type="submit" class="btn btn-default">Submit</button>
+                    </form>                 
+    </div>
+    <h2>Upload From Excel</h2>
+    <div class="content">
+   <!--  <form class="well" name="formTest" ng-submit="saveProduct()">
+                      <div class="form-group">
+                               <label for="name"> Select Brand</label>
+                                <select class="form-control">
+                                          <option value="All" selected  ng-repeat="p in data" value="{{}}" class="form-control"></option>         
+                                 </select>
+                                    <label for="name"> Select Product </label>
+                                      <select class="form-control">
+                                          <option value="All" selected  ng-repeat="p in data" value="{{}}" class="form-control"></option>         
+                                 </select>
+                                 <label for="name"> Select Godown</label>
+                                      <select class="form-control">
+                                          <option value="All" selected  ng-repeat="" value="" class="form-control"></option>         
+                                 </select>
+                        </div>
+                                      <button type="submit" class="btn btn-default">Submit</button>
+                  </form> -->
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    $('#accordion .content').hide();
+    $('#accordion h2:first').addClass('active').next().slideDown('slow');
+    $('#accordion h2').click(function() {
+        if($(this).next().is(':hidden')) {
+            $('#accordion h2').removeClass('active').next().slideUp('slow');
+            $(this).toggleClass('active').next().slideDown('slow');
+        }
+        /*if($(this).next().is(':visible')) {
+           
+            $(this).toggleClass('active').next().slideUp('slow');
+        }*/
+    });
+});
+</script>

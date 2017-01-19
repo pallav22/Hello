@@ -1,0 +1,6 @@
+---
+applications:
+   - name: loginapi
+     buildpack: java-buildpack
+     path: target\auth-1.3.5.RELEASE.war
+     memory: 256MB
