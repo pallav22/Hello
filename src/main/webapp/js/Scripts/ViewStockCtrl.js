@@ -1,20 +1,25 @@
 sanjivikaElectronics.controller('ViewStockCtrl', function ($scope,SessionCheckService,$http) {
-	$( document ).click(function() {
-    	SessionCheckService.getSessionToken().success(function(data) {
-		$scope.response = data;
-//		console.log($scope.response.status);
-		if($scope.response.status==200){
-//			console.log("success");
-		}else{
-			 location.assign("login?inactive");
-		}
-	});
+
+    $( document ).click(function() {
+
+        SessionCheckService.getSessionToken().success(function(data) {
+        $scope.response = data;
+        if($scope.response.status==200){
+        }else{
+             location.assign("login?inactive");
+        }
+    });
 });
-	
-	$http.get('userController/api/items').then(function(response){ 
+    
+    $http.get('userController/api/items').then(function(response){ 
 
     $scope.viewItem = response.data;
-//    console.log($scope.viewItem);
-    });
+    }); 
+    
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
+   
      });
  

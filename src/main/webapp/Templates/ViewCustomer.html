@@ -3,249 +3,271 @@
 
 
 <div class="row">
-        <div class="col-lg-12">
-                <h1 class="page-header">
-                    <small>View Customer</small>
-                </h1>
-                
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            <small>View Customer</small>
+        </h1>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group pull-right">
+            <input type="text" class="search form-control"
+                ng-model="searchCutomer" placeholder="Search Customer here">
         </div>
-</div>
+        <!--Prashant Model box start here-->
+        <div class="modal fade" id="modelAddCustomer" tabindex="-1"
+            role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="memberModalLabel">
+                            <strong>Please Fill in the Form below.!</strong>
+                        </h4>
 
-<div class="row"> <div class="col-lg-12"> 
-    <div class="form-group pull-right">
-    <input type="text" class="search form-control" ng-model="searchCutomer" placeholder="Search Customer here">
-</div>
-<!--Prashant Model box start here-->
-<div class="modal fade" id="modelAddCustomer" tabindex="-1"
-        role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="memberModalLabel">
-                        <strong>Please Fill in the Form below.!</strong>
-                    </h4>
-
-                </div>
-                <!--          <div class="row">
+                    </div>
+                    <!--          <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
                           <small>Please Fill in the  Form below.</small>
                         </h1>
                     </div>
                 </div> -->
-                <div id="FormCustomer" style="padding-top: 7px; padding-left: 11px;">
+                    <div id="FormCustomer"
+                        style="padding-top: 7px; padding-left: 11px;">
 
-                    <form name="form" ng-submit="saveCustomer()" role="form">
+                        <form name="form" ng-submit="saveCustomer()" role="form">
 
-                        <div class="row" style="padding-top: 15px;">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Full Name</label>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="username">Full Name</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
 
-                                    <input type="text" name="Prefix" id="Prefix"
-                                        class="form-control" ng-model="Prefix" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Prefix</label> <span
-                                        ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
-                                        class="help-block">Prefix is Required</span>
+                                        <input type="text" name="Prefix" id="Prefix"
+                                            class="form-control" ng-model="Prefix" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Prefix</label> <span
+                                            ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
+                                            class="help-block">Prefix is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+                                        <input type="text" name="firstName" id="firstName"
+                                            class="form-control" ng-model="firstName" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">First Name</label>
+                                        <span
+                                            ng-show="form.firstName.$dirty && form.firstName.$error.required"
+                                            class="help-block">First name is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.secondName.$dirty && form.secondName.$error.required }">
+
+                                        <input type="text" name="secondName" id="secondName"
+                                            class="form-control" ng-model="secondName" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Last Name</label>
+                                        <span
+                                            ng-show="form.secondName.$dirty && form.secondName.$error.required"
+                                            class="help-block">Second name is required</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-                                    <input type="text" name="firstName" id="firstName"
-                                        class="form-control" ng-model="firstName" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">First Name</label>
-                                    <span
-                                        ng-show="form.firstName.$dirty && form.firstName.$error.required"
-                                        class="help-block">First name is required</span>
+
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="username">Address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
+
+                                        <input type="text" name="street" id="street"
+                                            class="form-control" ng-model="street" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Street
+                                            Address </label> <span
+                                            ng-show="form.street.$dirty && form.street.$error.required"
+                                            class="help-block">Street Address is required</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.secondName.$dirty && form.secondName.$error.required }">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
 
-                                    <input type="text" name="secondName" id="secondName"
-                                        class="form-control" ng-model="secondName" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Last Name</label>
-                                    <span
-                                        ng-show="form.secondName.$dirty && form.secondName.$error.required"
-                                        class="help-block">Second name is required</span>
+                                        <input type="text" name="street1" id="street1"
+                                            class="form-control" ng-model="street1" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Street
+                                            Address Line2</label> <span
+                                            ng-show="form.street1.$dirty && form.street1.$error.required"
+                                            class="help-block">Street Address Line2 Required </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
 
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Address</label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
+                                        <input type="text" name="city" id="city" class="form-control"
+                                            ng-model="city" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">City</label> <span
+                                            ng-show="form.city.$dirty && form.city.$error.required"
+                                            class="help-block">City name is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.postal.$dirty && form.postal.$error.required }">
 
-                                    <input type="text" name="street" id="street"
-                                        class="form-control" ng-model="street" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Street
-                                        Address </label> <span
-                                        ng-show="form.street.$dirty && form.street.$error.required"
-                                        class="help-block">Street Address is required</span>
+                                        <input type="text" name="postal" id="postal"
+                                            class="form-control" ng-model="postal" required
+                                            ng-pattern="postalV" /> <label
+                                            style="font-weight: 100; font-size: 13px;">Postal
+                                            Code</label> <span
+                                            ng-show="form.postal.$dirty && form.postal.$error.required"
+                                            class="help-block">Postal code is required</span> <br> <span
+                                            class="help-block" style="color: #a94442"
+                                            ng-show="form.postal.$error.pattern">Provide Valid
+                                            postal Code</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="username">Mobile Number</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
 
-                                    <input type="text" name="street1" id="street1"
-                                        class="form-control" ng-model="street1" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Street
-                                        Address Line2</label> <span
-                                        ng-show="form.street1.$dirty && form.street1.$error.required"
-                                        class="help-block">Street Address Line2 Required </span>
+                                        <input style="width: 48px;" type="text" name="mCode"
+                                            id="mCode" class="form-control" ng-model="mCode" readonly
+                                            required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Code</label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.mobileNo.$dirty && form.mobileNo.$error.required }">
+
+                                        <input type="text" name="mobileNo" id="mobileNo"
+                                            class="form-control" ng-model="mobileNo"
+                                            ng-pattern="phoneNumbr" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Mobile
+                                            Number</label> <span
+                                            ng-show="form.mobileNo.$dirty && form.mobileNo.$error.required"
+                                            class="help-block">Provide Valid Mobile</span> <br> <span
+                                            class="help-block" style="color: #a94442"
+                                            ng-show="form.mobileNo.$error.pattern">Provide Valid
+                                            Number</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-3">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
 
-                                    <input type="text" name="city" id="city" class="form-control"
-                                        ng-model="city" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">City</label> <span
-                                        ng-show="form.city.$dirty && form.city.$error.required"
-                                        class="help-block">City name is required</span>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="username">Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <input type="text" name="Email" id="Email"
+                                            class="form-control" ng-model="Email" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Email</label>
+
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.postal.$dirty && form.postal.$error.required }">
+                            <div class="row" style="padding-bottom: 11px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
 
-                                    <input type="text" name="postal" id="postal"
-                                        class="form-control" ng-model="postal" required
-                                        ng-pattern="postalV" /> <label
-                                        style="font-weight: 100; font-size: 13px;">Postal
-                                        Code</label> <span
-                                        ng-show="form.postal.$dirty && form.postal.$error.required"
-                                        class="help-block">Postal code is required</span> <br>
-                                    <span class="help-block" style="color: #a94442"
-                                        ng-show="form.postal.$error.pattern">Provide Valid
-                                        postal Code</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Mobile Number</label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
+                                <div class="col-md-" style="padding-left: 70px;">
+                                    <div class="form-actions">
+                                        <button type="submit" ng-disabled="form.$invalid "
+                                            class="btn btn-primary">Submit</button>
 
-                                    <input style="width: 48px;" type="text" name="mCode" id="mCode"
-                                        class="form-control" ng-model="mCode" readonly required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Code</label>
+                                        <button type="submit" ng-disabled="form.$pristine "
+                                            ng-click="clearForm()" class="btn btn-primary">Reset</button>
 
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.mobileNo.$dirty && form.mobileNo.$error.required }">
+                                    </div>
 
-                                    <input type="text" name="mobileNo" id="mobileNo"
-                                        class="form-control" ng-model="mobileNo"
-                                        ng-pattern="phoneNumbr" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Mobile
-                                        Number</label> <span
-                                        ng-show="form.mobileNo.$dirty && form.mobileNo.$error.required"
-                                        class="help-block">Provide Valid Mobile</span> <br>
-                                    <span class="help-block" style="color: #a94442"
-                                        ng-show="form.mobileNo.$error.pattern">Provide Valid
-                                        Number</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <input type="text" name="Email" id="Email" class="form-control"
-                                        ng-model="Email" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Email</label>
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="row" style="padding-bottom: 11px;">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-
-                            <div class="col-md-" style="padding-left: 70px;">
-                                <div class="form-actions">
-                                    <button type="submit" ng-disabled="form.$invalid "
-                                        class="btn btn-primary">Submit</button>
-
-                                    <button type="submit" ng-disabled="form.$pristine "
-                                        ng-click="clearForm()" class="btn btn-primary">Reset</button>
-
-                                </div>
+                    </div>
 
 
-                            </div>
-                        </div>
+                    </form>
                 </div>
-
-
-                </form>
             </div>
+            <!-- Prashant model box end here -->
         </div>
-        <!-- Prashant model box end here -->
-</div>
-        <div class="col-lg-12">  
-                <table class="table table-striped">
-                    <thead >
-                            <tr>
-                                <th >Full Name</th>
-                                <th>Address</th>
-                                <th>Area</th>
-                                <th>Pin Code</th>
-                                <th>City</th>
-                                <th>Mobile Number</th>
-                                <th>Email</th>
-                                <th>Update</th>
-                            </tr>
-                    </thead>
-                    <tbody>
-                            <tr ng-repeat="x in viewCustomer | filter : searchCutomer">
-                                <td>{{x.prefix}} {{x.firstName}} {{x.secondName}}</td>
-                                <td>{{x.street}}</td>
-                                <td>{{x.street1}}</td>
-                                <td>{{x.postal}}</td>
-                                <td>{{x.city}}</td>
-                                <td>{{x.mobile}}</td>
-                                <td>{{x.email}}</td>
-                                <td><a href='' ng-click="update(x.id)"><span class="glyphicon glyphicon-pencil" data-placement="right" data-toggle="tooltip" data-original-title="In Stock "style="font-size:15px;color:blue"></span></a></td>
-                            </tr>
-                         <!--    <tr>
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th ng-click="sort('firstName')">Full Name<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='firstName'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th ng-click="sort('street')">Address<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='street'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th ng-click="sort('street1')">Area<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='street1'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th ng-click="sort('postal')">Pin Code<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='postal'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th ng-click="sort('city')">City<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='city'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th ng-click="sort('mobile')">Mobile Number<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='mobile'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th ng-click="sort('email')">Email<span
+                            class="glyphicon sort-icon" ng-show="sortKey=='email'"
+                            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        dir-paginate="x in viewCustomer | filter : searchCutomer | itemsPerPage:2 | orderBy: sortKey:reverse">
+                        <td>{{x.prefix}} {{x.firstName}} {{x.secondName}}</td>
+                        <td>{{x.street}}</td>
+                        <td>{{x.street1}}</td>
+                        <td>{{x.postal}}</td>
+                        <td>{{x.city}}</td>
+                        <td>{{x.mobile}}</td>
+                        <td>{{x.email}}</td>
+                        <td><a href='' ng-click="update(x.id)"><span
+                                class="glyphicon glyphicon-pencil" data-placement="right"
+                                data-toggle="tooltip" data-original-title="In Stock "
+                                style="font-size: 15px; color: blue"></span></a></td>
+                    </tr>
+                    <!--    <tr>
                                 <td>Mary</td>
                                 <td>Moe</td>
                                 <td>mary@example.com</td>
@@ -259,18 +281,22 @@
                                 <td>john@example.com</td>
                                 <td>john@example.com</td>
                             </tr> -->
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
+            <div style="text-align: center">
+                <dir-pagination-controls max-size="5" direction-links="true"
+                    boundary-links="true"> </dir-pagination-controls>
+            </div>
         </div>
-</div>
+    </div>
 
-<script type="text/javascript">
-    function updateCustomer() {
-        $('#modelAddCustomer').modal('show');
-    }
-</script>
+    <script type="text/javascript">
+        function updateCustomer() {
+            $('#modelAddCustomer').modal('show');
+        }
+    </script>
 
-<style type="text/css">
+    <style type="text/css">
 #FormCustomer {
     width: 100%;
     font-family: Black-Ch;
