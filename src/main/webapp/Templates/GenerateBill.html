@@ -13,613 +13,641 @@
 </head>
 <style type="text/css">
 .form-group {
-    margin-bottom: 0px;
+	margin-bottom: 0px;
 }
 
-@media print
-    {
-      #shopaddress{
-      display:none;
-      }
-      #saveandprint{
-      display:none;
-      }
-      #HideSearch{
-      display:none;
-      }
-      #HideSearchModel{
-      display:none;
-      }
-    }
+@media print {
+	#shopaddress {
+		display: none;
+	}
+	#saveandprint {
+		display: none;
+	}
+	#HideSearch {
+		display: none;
+	}
+	#HideSearchModel {
+		display: none;
+	}
+}
+
 #FormCustomer {
-    width: 100%;
-    font-family: Black-Ch;
-    margin: 10px auto;
-    border: 2px solid white;
-    /*box-shadow: 1px 2px 1px 5px rgba(136, 136, 136, 0.43);*/
+	width: 100%;
+	font-family: Black-Ch;
+	margin: 10px auto;
+	border: 2px solid white;
+	/*box-shadow: 1px 2px 1px 5px rgba(136, 136, 136, 0.43);*/
 }
 
 .row {
-    margin-right: 0px;
+	margin-right: 0px;
 }
 
 .modal-content {
-    width: 618px;
+	width: 618px;
 }
 
 .active {
-    width: 1067px;
-    border-left-width: 0px;
-    left: -220px;
-    margin-left: 0px;
-    "
+	width: 1067px;
+	border-left-width: 0px;
+	left: -220px;
+	margin-left: 0px;
+	"
 }
 
 .move {
-    margin-left: 30em !important;
+	margin-left: 30em !important;
 }
 </style>
 
 <body>
-    <!-- <Model  html for Search Product  from Generate Bill> -->
-    <div class="modal fade" id="ModelProductSearch" tabindex="-1"
-        role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content" ng-class=" active">
-                <div class="modal-header">
-                    <button type="button" class="close" ng-click="closeModel()"
-                        data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="memberModalLabel" ng-if="Hidesearch">
-                        <strong>Search Product</strong>
-                    </h4>
-                    <h4 class="modal-title" id="memberModalLabel" ng-if="Showtable">
-                        <strong>Searched Product</strong>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="well">
-                        <form name="formProduct" ng-submit="searchModel(searchProdcut1)"
-                            ng-if="Hidesearch">
-                            <input type="name" class="form-control" id="name"
-                                ng-model="searchProdcut1" placeholder="Enter Model Number"
-                                required /> <span style="color: red;" ng-hide="">{{ModelNotFound}}</span>
-                            <button ng-hide="search1" ng-class="move" type="submit"
-                                class="btn btn-primary"
-                                style="margin-top: 2em; margin-left: 15em;">Submit</button>
+	<!-- <Model  html for Search Product  from Generate Bill> -->
+	<div class="modal fade" id="ModelProductSearch" tabindex="-1"
+		role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true"
+		data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content" ng-class=" active">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="closeModel()"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="memberModalLabel" ng-if="Hidesearch">
+						<strong>Search Product</strong>
+					</h4>
+					<h4 class="modal-title" id="memberModalLabel" ng-if="Showtable">
+						<strong>Searched Product</strong>
+					</h4>
+					<!-- <div class="form-group pull-left" ng-if="Showtable">
+						<input type="text" class="search form-control"
+							ng-model="searchItemOnModel" placeholder="Search item here ">
+					</div> -->
 
-                        </form>
-                        <form name="modeltable">
-                            <table class="table table-striped" ng-if="Showtable">
-                                <thead>
-                                    <tr>
+				</div>
+				<div class="modal-body">
+					<div class="well">
+						<form name="formProduct" ng-submit="searchModel(searchProdcut1)"
+							ng-if="Hidesearch">
+							<input type="name" class="form-control" id="name"
+								ng-model="searchProdcut1" placeholder="Enter Model Number"
+								required /> <span style="color: red;" ng-hide="">{{ModelNotFound}}</span>
+							<button ng-hide="search1" ng-class="move" type="submit"
+								class="btn btn-primary"
+								style="margin-top: 2em; margin-left: 15em;">Submit</button>
 
-                                        <th>Brand Name</th>
-                                        <th>Product Name</th>
-                                        <th>Model No</th>
-                                        <th>Serial No</th>
-                                        <th>Selling Price</th>
-                                        <th>Dealer Price</th>
-                                        <th>Godown Name</th>
-                                        <th>VAT %</th>
-                                        <th>Check box</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="x in searchProductModel">
-                                        <td ng-model="x.brand.brandName">{{x.brand.brandName}}</td>
-                                        <td ng-model="x.product.productname">{{x.product.productname}}</td>
-                                        <td ng-model="x.modelNumber">{{x.modelNumber}}</td>
-                                        <td ng-model="x.serialNumber">{{x.serialNumber}}</td>
-                                        <td><input type="text" id="mrp" class="form-control"
-                                            ng-model="changedvalue" style="width: 95px;" /></td>
-                                        <td ng-model="x.dp">{{x.dp}}</td>
-                                        <td ng-model="x.godown.godownName">{{x.godown.godownName}}</td>
-                                        <td><select ng-model="VAT">
-                                                <option value="0" selected>N/A</option>
-                                                <option value="6">6</option>
-                                                <option value="15">15</option>
-                                        </select></td>
-                                        <td><label><input class="single-checkbox"
-                                                type="checkbox"
-                                                ng-disabled="x[$index] || modeltable.$pristine"
-                                                ng-model="x[$index]" ng-click="getValue(x,changedvalue,VAT)"
-                                                value="true"></label></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
-                        <button id="AddtoBill" ng-click="addToBill()"
-                            class="btn btn-primary" ng-if="Showtable"
-                            style="margin-left: 428px;" disabled="true">Add</button>
-                    </div>
-                </div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-    </div>
-    <!-- <Model  html for Search customer  from Generate Bill> -->
-    <div class="modal fade" id="modelSearch" tabindex="-1" role="dialog"
-        aria-labelledby="memberModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="memberModalLabel">
-                        <strong>Search Customer </strong>
-                    </h4>
+						</form>
+						<div class="row">
+  <div class="col-md-6"> </div>
+							<div class="col-md-3">
+								<!-- ngIf: Showtable --><input type="text" class="search form-control ng-scope ng-pristine ng-valid" ng-model="searchItem"  ng-change="Changed()" placeholder="Search item here " ng-show="Showtable==true"><!-- end ngIf: Showtable --></div><div class="col-md-3">
+								<!-- ngIf: Showtable --><button style="width: 100% !important;" id="AddtoBill" ng-click="addToBill()" class="btn btn-primary ng-scope" ng-if="Showtable" disabled="true">Add</button><!-- end ngIf: Showtable --></div></div>
+						<form name="modeltable">
+							<table class="table table-striped" ng-if="Showtable">
+								
+						<!-- 	<div class="row">
+							<div class="col-md-4">
+								<input type="text" class="search form-control" ng-model="xyz"
+									placeholder="Search item here " ng-if="Showtable"
+									style="width: 32em;"></div><div class="col-md-2"> </div><div class="col-md-6">
+								<button style="width: 35em;" id="AddtoBill" ng-click="addToBill()"
+									class="btn btn-primary" ng-if="Showtable"
+									style="margin-left: 70px;" disabled="true" >Add</button></div></div> -->
+								<thead>
+									<tr>
 
-                </div>
-                <div class="modal-body">
-                    <form class="well" name="formTest" ng-submit="searchCustomer()">
-                        <input type="name" class="form-control" id="name"
-                            ng-model="modelSearch" placeholder="Enter Mobile Number" required />
+										<th>Brand Name</th>
+										<th>Product Name</th>
+										<th>Model No</th>
+										<th>Serial No</th>
+										<th>Selling Price</th>
+										<th>Dealer Price</th>
+										<th>Godown Name</th>
+										<th>VAT %</th>
+										<th>Check box</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in searchProductModel |filter : searchItem ">
+										<td ng-model="x.brand.brandName">{{x.brand.brandName}}</td>
+										<td ng-model="x.product.productname">{{x.product.productname}}</td>
+										<td ng-model="x.modelNumber">{{x.modelNumber}}</td>
+										<td ng-model="x.serialNumber">{{x.serialNumber}}</td>
+										<td><input type="text" id="mrp" class="form-control"
+											ng-model="changedvalue" style="width: 95px;" /></td>
+										<td ng-model="x.dp">{{x.dp}}</td>
+										<td ng-model="x.godown.godownName">{{x.godown.godownName}}</td>
+										<td><select ng-model="VAT">
+												<option value="0" selected>N/A</option>
+												<option value="6">6</option>
+												<option value="15">15</option>
+										</select></td>
+										<td><label><input class="single-checkbox"
+												type="checkbox"
+												ng-disabled="x[$index] || modeltable.$pristine"
+												ng-model="x[$index]" ng-click="getValue(x,changedvalue,VAT)"
+												value="true"></label></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
 
-                        <!--     <button ng-hide="customerForm" type="button" class="btn btn-primary" onclick="openModelAddCustomer()" data-dismiss="modal" style="
+					</div>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- <Model  html for Search customer  from Generate Bill> -->
+	<div class="modal fade" id="modelSearch" tabindex="-1" role="dialog"
+		aria-labelledby="memberModalLabel" aria-hidden="true"
+		data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="memberModalLabel">
+						<strong>Search Customer </strong>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<form class="well" name="formTest" ng-submit="searchCustomer()">
+						<input type="name" class="form-control" id="name"
+							ng-model="modelSearch" placeholder="Enter Mobile Number" required />
+
+						<!--     <button ng-hide="customerForm" type="button" class="btn btn-primary" onclick="openModelAddCustomer()" data-dismiss="modal" style="
     margin-top: 2em; margin-left: 13em;    
 ">Add Customer</button> -->
 
-                        <!-- <span ng-hide="customerForm">Customer Details Not found</span>
+						<!-- <span ng-hide="customerForm">Customer Details Not found</span>
                         <button ng-hide="search" type="submit" class="btn btn-primary"
                             style="margin-top: 2em; margin-left: 13em;">Search</button>
                         <button ng-hide="search" type="button" class="btn btn-primary"
                             data-dismiss="modal" style="margin-top: 2em;">Close</button> -->
-                        <span style="color: red;" ng-hide="">{{CustomerNotification}}</span>
-                        <button ng-hide="" type="submit" class="btn btn-primary"
-                            style="margin-top: 2em; margin-left: 13em;">Search</button>
-                        <button ng-hide="" type="button" class="btn btn-primary"
-                            data-dismiss="modal" style="margin-top: 2em;">Close</button>
-                    </form>
-                </div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-    </div>
-    <!-- <Model  html for save customer  from Generate Bill> -->
-    <div class="modal fade" id="modelAddCustomer" tabindex="-1"
-        role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true "
-        style="overflow-y: scroll; max-height: 85%; margin-top: 50px; margin-bottom: 50px;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="memberModalLabel">
-                        <strong>Please Fill in the Form below.!</strong>
-                    </h4>
+						<span style="color: red;" ng-hide="">{{CustomerNotification}}</span>
+						<button ng-hide="" type="submit" class="btn btn-primary"
+							style="margin-top: 2em; margin-left: 13em;">Search</button>
+						<button ng-hide="" type="button" class="btn btn-primary"
+							data-dismiss="modal" style="margin-top: 2em;">Close</button>
+					</form>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- <Model  html for save customer  from Generate Bill> -->
+	<div class="modal fade" id="modelAddCustomer" tabindex="-1"
+		role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true "
+		style="overflow-y: scroll; max-height: 85%; margin-top: 50px; margin-bottom: 50px;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="memberModalLabel">
+						<strong>Please Fill in the Form below.!</strong>
+					</h4>
 
-                </div>
-                <!--          <div class="row">
+				</div>
+				<!--          <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
                           <small>Please Fill in the  Form below.</small>
                         </h1>
                     </div>
                 </div> -->
-                <div id="FormCustomer" style="padding-top: 7px; padding-left: 11px;">
-                    <form name="form" ng-submit="saveCustomer()" role="form">
+				<div id="FormCustomer" style="padding-top: 7px; padding-left: 11px;">
+					<form name="form" ng-submit="saveCustomer()" role="form">
 
-                        <div class="row" style="padding-top: 15px;">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Full Name</label>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
+						<div class="row" style="padding-top: 15px;">
+							<div class="col-md-2"></div>
+							<div class="col-md-2">
+								<label for="username">Full Name</label>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
 
-                                    <input type="text" name="Prefix" id="Prefix"
-                                        class="form-control" ng-model="Prefix" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Prefix</label> <span
-                                        ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
-                                        class="help-block">Prefix is Required</span>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-                                    <input type="text" name="firstName" id="firstName"
-                                        class="form-control" ng-model="firstName" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">First Name</label>
-                                    <span
-                                        ng-show="form.firstName.$dirty && form.firstName.$error.required"
-                                        class="help-block">First name is required</span>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.secondName.$dirty && form.secondName.$error.required }">
+									<input type="text" name="Prefix" id="Prefix"
+										class="form-control" ng-model="Prefix" required /> <label
+										style="font-weight: 100; font-size: 13px;">Prefix</label> <span
+										ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
+										class="help-block">Prefix is Required</span>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+									<input type="text" name="firstName" id="firstName"
+										class="form-control" ng-model="firstName" required /> <label
+										style="font-weight: 100; font-size: 13px;">First Name</label>
+									<span
+										ng-show="form.firstName.$dirty && form.firstName.$error.required"
+										class="help-block">First name is required</span>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.secondName.$dirty && form.secondName.$error.required }">
 
-                                    <input type="text" name="secondName" id="secondName"
-                                        class="form-control" ng-model="secondName" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Last Name</label> <span
-                                        ng-show="form.secondName.$dirty && form.secondName.$error.required"
-                                        class="help-block">Second name is required</span>
-                                </div>
-                            </div>
-                        </div>
+									<input type="text" name="secondName" id="secondName"
+										class="form-control" ng-model="secondName" required /> <label
+										style="font-weight: 100; font-size: 13px;">Last Name</label> <span
+										ng-show="form.secondName.$dirty && form.secondName.$error.required"
+										class="help-block">Second name is required</span>
+								</div>
+							</div>
+						</div>
 
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Address</label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-2">
+								<label for="username">Address</label>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
 
-                                    <input type="text" name="street" id="street"
-                                        class="form-control" ng-model="street" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Street
-                                        Address </label> <span
-                                        ng-show="form.street.$dirty && form.street.$error.required"
-                                        class="help-block">Street Address is required</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
+									<input type="text" name="street" id="street"
+										class="form-control" ng-model="street" required /> <label
+										style="font-weight: 100; font-size: 13px;">Street
+										Address </label> <span
+										ng-show="form.street.$dirty && form.street.$error.required"
+										class="help-block">Street Address is required</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-2"></div>
+							<div class="col-md-6">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
 
-                                    <input type="text" name="street1" id="street1"
-                                        class="form-control" ng-model="street1" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Street
-                                        Address Line2</label> <span
-                                        ng-show="form.street1.$dirty && form.street1.$error.required"
-                                        class="help-block">Street Address Line2 Required </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-3">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
+									<input type="text" name="street1" id="street1"
+										class="form-control" ng-model="street1" required /> <label
+										style="font-weight: 100; font-size: 13px;">Street
+										Address Line2</label> <span
+										ng-show="form.street1.$dirty && form.street1.$error.required"
+										class="help-block">Street Address Line2 Required </span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-2"></div>
+							<div class="col-md-3">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
 
-                                    <input type="text" name="city" id="city" class="form-control"
-                                        ng-model="city" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">City</label> <span
-                                        ng-show="form.city.$dirty && form.city.$error.required"
-                                        class="help-block">City name is required</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.postal.$dirty && form.postal.$error.required }">
+									<input type="text" name="city" id="city" class="form-control"
+										ng-model="city" required /> <label
+										style="font-weight: 100; font-size: 13px;">City</label> <span
+										ng-show="form.city.$dirty && form.city.$error.required"
+										class="help-block">City name is required</span>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.postal.$dirty && form.postal.$error.required }">
 
-                                    <input type="text" name="postal" id="postal"
-                                        class="form-control" ng-model="postal" required
-                                        ng-pattern="postalV" /> <label
-                                        style="font-weight: 100; font-size: 13px;">Postal Code</label>
-                                    <span
-                                        ng-show="form.postal.$dirty && form.postal.$error.required"
-                                        class="help-block">Postal code is required</span> <br> <span
-                                        class="help-block" style="color: #a94442"
-                                        ng-show="form.postal.$error.pattern">Provide Valid
-                                        postal Code</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Mobile Number</label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
+									<input type="text" name="postal" id="postal"
+										class="form-control" ng-model="postal" required
+										ng-pattern="postalV" /> <label
+										style="font-weight: 100; font-size: 13px;">Postal Code</label>
+									<span
+										ng-show="form.postal.$dirty && form.postal.$error.required"
+										class="help-block">Postal code is required</span> <br> <span
+										class="help-block" style="color: #a94442"
+										ng-show="form.postal.$error.pattern">Provide Valid
+										postal Code</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-2">
+								<label for="username">Mobile Number</label>
+							</div>
+							<div class="col-md-1">
+								<div class="form-group">
 
-                                    <input style="width: 48px;" type="text" name="mCode" id="mCode"
-                                        class="form-control" ng-model="mCode" readonly required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Code</label>
+									<input style="width: 48px;" type="text" name="mCode" id="mCode"
+										class="form-control" ng-model="mCode" readonly required /> <label
+										style="font-weight: 100; font-size: 13px;">Code</label>
 
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group"
-                                    ng-class="{ 'has-error': form.mobileNo.$dirty && form.mobileNo.$error.required }">
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="form-group"
+									ng-class="{ 'has-error': form.mobileNo.$dirty && form.mobileNo.$error.required }">
 
-                                    <input type="text" name="mobileNo" id="mobileNo"
-                                        class="form-control" ng-model="mobileNo"
-                                        ng-pattern="phoneNumbr" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Mobile
-                                        Number</label> <span
-                                        ng-show="form.mobileNo.$dirty && form.mobileNo.$error.required"
-                                        class="help-block">Provide Valid Mobile</span> <br> <span
-                                        class="help-block" style="color: #a94442"
-                                        ng-show="form.mobileNo.$error.pattern">Provide Valid
-                                        Number</span>
-                                </div>
-                            </div>
-                        </div>
+									<input type="text" name="mobileNo" id="mobileNo"
+										class="form-control" ng-model="mobileNo"
+										ng-pattern="phoneNumbr" required /> <label
+										style="font-weight: 100; font-size: 13px;">Mobile
+										Number</label> <span
+										ng-show="form.mobileNo.$dirty && form.mobileNo.$error.required"
+										class="help-block">Provide Valid Mobile</span> <br> <span
+										class="help-block" style="color: #a94442"
+										ng-show="form.mobileNo.$error.pattern">Provide Valid
+										Number</span>
+								</div>
+							</div>
+						</div>
 
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2">
-                                <label for="username">Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-2">
+								<label for="username">Email</label>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
 
-                                    <input type="text" name="Email" id="Email" class="form-control"
-                                        ng-model="Email" required /> <label
-                                        style="font-weight: 100; font-size: 13px;">Email</label>
+									<input type="text" name="Email" id="Email" class="form-control"
+										ng-model="Email" required /> <label
+										style="font-weight: 100; font-size: 13px;">Email</label>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-bottom: 11px;">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
-                            <div class="col-md-2"></div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding-bottom: 11px;">
+							<div class="col-md-2"></div>
+							<div class="col-md-2"></div>
+							<div class="col-md-2"></div>
 
-                            <div class="col-md-" style="padding-left: 70px;">
-                                <div class="form-actions">
-                                    <button type="submit" ng-disabled="form.$invalid "
-                                        class="btn btn-primary">Submit</button>
+							<div class="col-md-" style="padding-left: 70px;">
+								<div class="form-actions">
+									<button type="submit" ng-disabled="form.$invalid "
+										class="btn btn-primary">Submit</button>
 
-                                    <button type="submit" ng-disabled="form.$pristine "
-                                        ng-click="clearForm()" class="btn btn-primary">Reset</button>
+									<button type="submit" ng-disabled="form.$pristine "
+										ng-click="clearForm()" class="btn btn-primary">Reset</button>
 
-                                </div>
-
-
-                            </div>
-                        </div>
-                </div>
+								</div>
 
 
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div id="invoice" class="pagestyle">
-        <div id="invoice-header">
-            <img alt="Mainlogo_large" class="logo screen" src="Images/Logo.png" />
-            <div class="vcard" id="company-address">
-                <h2>
-                    <strong> Invoice No{{invoiceNumber}}</strong>
-                </h2>
-                <h4>
-                    <small>{{Date1}}</small>
-                </h4>
-                <h6>
-                    <small style="font-size: 17px !important;"> Authorized
-                        Dealer</small>
-                </h6>
-                <span>TIN (VAT): 10301228020</span><br> <span>TIN C.S.T:
-                    10301228117</span>
+							</div>
+						</div>
+				</div>
 
-            </div>
-                <div id="invoice-info" style="
-    font-size: 16px;
-">
 
-                <div class="fn">
-                    <strong> Customer Details<i onclick="openCustomermodel();"
-                        class="fa fa-search"
-                        style="padding-left: 18px; font-size: 1.5em; color: green;"
-                        data-placement="right" data-toggle="tooltip"
-                        data-original-title="search  Customer" id="HideSearch"></i></strong>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="invoice" class="pagestyle">
+		<div id="invoice-header">
+			<img alt="Mainlogo_large" class="logo screen" src="Images/Logo.png" />
+			<div>
+				<h2>
+					<strong style="margin-left: 8em; font-size: 22px;">Retail
+						Invoice</strong>
+				</h2>
+			</div>
 
-                </div>
-                <div class="org">{{Prefix}}. {{firstName}} {{secondName}}</div>
-                <div class="adr">
-                    <div class="street-address">
-                        {{street}}<br /> {{street1}} <br /> {{city}} {{postal}}
-                    </div>
-                    <div class="locality">{{state}}</div>
+			<div class="vcard" id="company-address">
+				<h2>
+					<strong> Invoice No{{invoiceNumber}}</strong>
+				</h2>
+				<h4>
+					<small>{{Date1}}</small>
+				</h4>
+				<h6>
+					<small style="font-size: 17px !important;"> Authorized
+						Dealer</small>
+				</h6>
+				<span>TIN (VAT): 10301228020</span><br> <span>TIN C.S.T:
+					10301228117</span>
 
-                    <div id="your-tax-number">Mob : - {{mobileNo}}</div>
-                </div>
+			</div>
+			<div id="invoice-info" style="font-size: 16px;">
 
-            </div>
+				<div class="fn">
+					<strong> Customer Details<i onclick="openCustomermodel();"
+						class="fa fa-search"
+						style="padding-left: 18px; font-size: 1.5em; color: green;"
+						data-placement="right" data-toggle="tooltip"
+						data-original-title="search  Customer" id="HideSearch"></i></strong>
 
-            <div class="vcard" id="client-details" data-placement="right"
-                data-toggle="tooltip" data-original-title="Select Shop Address" style="
-    font-size: 17px;
-">
-                <div class="fn org">
-                    <!--         <strong>
+				</div>
+				<div class="org">{{Prefix}}. {{firstName}} {{secondName}}</div>
+				<div class="adr">
+					<div class="street-address">
+						{{street}}<br /> {{street1}} <br /> {{city}} {{postal}}
+					</div>
+					<div class="locality">{{state}}</div>
+
+					<div id="your-tax-number">Mob : - {{mobileNo}}</div>
+				</div>
+
+			</div>
+
+			<div class="vcard" id="client-details" data-placement="right"
+				data-toggle="tooltip" data-original-title="Select Shop Address"
+				style="font-size: 17px;">
+				<div class="fn org">
+					<!--         <strong>
               SHOP Address
             </strong> -->
-                </div>
-                <div id=shopaddress>
-                    <strong> Shop Address :</strong> <select ng-model="selectedaddress"
-                        ng-change="getAddress()">
-                        <option value="Tilakmaidan">Tilak Maidan</option>
-                        <option value="Plaza">Plaza</option>
-                        <option value="emall">emall</option>
+				</div>
+				<div id=shopaddress>
+					<strong> Shop Address :</strong> <select ng-model="selectedaddress"
+						ng-change="getAddress()">
+						<option value="Tilakmaidan">Tilak Maidan</option>
+						<option value="Plaza">Plaza</option>
+						<option value="emall">emall</option>
 
-                    </select>
-                </div>
-                <div class="adr" ng-if="tilak">
-                    <div class="street-address">
-                        <strong> Sanjivika Electronics</strong><br /> <small>
-                            Tilak Maidan Road</small><br />
-                    </div>
+					</select>
+				</div>
+				<div class="adr" ng-if="tilak">
+					<div class="street-address">
+						<strong> Sanjivika Electronics</strong><br /> <small>
+							Tilak Maidan Road</small><br />
+					</div>
 
-                    <div id="company-postcode">
-                        <span class="region">Muzaffarpur 842001</span>
-                        <!-- <span class="postal-code">842002</span> -->
-                    </div>
-                    <div class="locality">Contanct No:2244653 , 2244655</div>
-                </div>
-                <div class="adr" ng-if="palza">
-                    <div class="street-address">
-                        <strong> Sanjivika Electronics</strong> <strong> SAMSUNG
-                            PLAZA</strong><br> <small>U.B Tower ,Old Tejpal Building
-                            Saraiyaganj</small>
-                    </div>
+					<div id="company-postcode">
+						<span class="region">Muzaffarpur 842001</span>
+						<!-- <span class="postal-code">842002</span> -->
+					</div>
+					<div class="locality">Contanct No:2244653 , 2244655</div>
+				</div>
+				<div class="adr" ng-if="palza">
+					<div class="street-address">
+						<strong> Sanjivika Electronics</strong> <strong> SAMSUNG
+							PLAZA</strong><br> <small>U.B Tower ,Old Tejpal Building
+							Saraiyaganj</small>
+					</div>
 
-                    <div id="company-postcode">
-                        <span class="region">Muzaffarpur 842001</span>
-                        <!-- <span class="postal-code">842002</span> -->
-                    </div>
-                    <div class="locality">Contanct No:2221076 </div>
-                </div>
-                <div class="adr" ng-if="emall">
-                    <div class="street-address">
-                        <strong> Sanjivika Electronics</strong> <strong> e-mall </strong><br>
+					<div id="company-postcode">
+						<span class="region">Muzaffarpur 842001</span>
+						<!-- <span class="postal-code">842002</span> -->
+					</div>
+					<div class="locality">Contanct No:2221076</div>
+				</div>
+				<div class="adr" ng-if="emall">
+					<div class="street-address">
+						<strong> Sanjivika Electronics</strong> <strong> e-mall </strong><br>
 
-                        <small> Amar Cinema Road</small>
+						<small> Amar Cinema Road</small>
 
-                    </div>
+					</div>
 
-                    <div id="company-postcode">
-                        <span class="region">Muzaffarpur 842001</span>
-                        <!-- <span class="postal-code">842002</span> -->
-                    </div>
-                    <div class="locality">Contanct No:2243655 M:9504092251</div>
-                </div>
-                <!-- <div class="email">
+					<div id="company-postcode">
+						<span class="region">Muzaffarpur 842001</span>
+						<!-- <span class="postal-code">842002</span> -->
+					</div>
+					<div class="locality">Contanct No:2243655 M:9504092251</div>
+				</div>
+				<!-- <div class="email">
                     Sanjivika@email.com
                 </div> -->
-                <!-- <div id="sales-tax-reg-number">
+				<!-- <div id="sales-tax-reg-number">
                     <span>TIN (VAT): 10301228020</span><br>
                     <span>TIN C.S.T: 10301228117</span>
                 </div>
  -->
-            </div>
+			</div>
 
-            <table id="invoice-amount">
-                <thead>
-                    <tr id="header_row">
-                        <th class="quantity_th" style="font-size: 1em; border: 1px solid;">Sr.No</th>
-                        <th class="left details_th"
-                            style="font-size: 1em; border: 1px solid;">Product Details <i
-                            ng-if="showsearchicon" onclick="openModelSerachProduct();"
-                            class="fa fa-search"
-                            style="padding-left: 18px; font-size: 1.5em; color: green;"
-                            data-placement="right" data-toggle="tooltip"
-                            data-original-title="ADD" id="HideSearchModel"></i></th>
-                        <th class="unitprice_th"
-                            style="font-size: 1em; border: 1px solid;padding-right: 5%;"">Unit Price
-                            </th>
-                        <th class="salestax_th" style="font-size: 1em; border: 1px solid;">VAT</th>
-                        <th class="subtotal_th" style="font-size: 1em; border: 1px solid;">Net
-                            Subtotal</th>
-                    </tr>
-                </thead>
-                <tfoot>
+			<table id="invoice-amount">
+				<thead>
+					<tr id="header_row">
+						<th class="quantity_th" style="font-size: 1em; border: 1px solid;">Sr.No</th>
+						<th class="left details_th"
+							style="font-size: 1em; border: 1px solid;">Product Details <i
+							ng-if="showsearchicon" onclick="openModelSerachProduct();"
+							class="fa fa-search"
+							style="padding-left: 18px; font-size: 1.5em; color: green;"
+							data-placement="right" data-toggle="tooltip"
+							data-original-title="ADD" id="HideSearchModel"></i></th>
+						<th class="unitprice_th"
+							style="font-size: 1em; border: 1px solid; padding-right: 5%;"">Unit
+							Price</th>
+						<th class="salestax_th" style="font-size: 1em; border: 1px solid;">VAT&nbsp;%</th>
+						<th class="subtotal_th" style="font-size: 1em; border: 1px solid;">Total
+							Value</th>
+					</tr>
+				</thead>
+				<tfoot style="margin-top: 400px;">
 
-                    <tr id="net_total_tr">
-                        <td colspan="2">&nbsp;</td>
-                        <td colspan="2" class="item_r">Net Total</td>
-                        <td class="item_r">Rs. {{costTotal}}</td>
-                    </tr>
-                    <tr id="vat_tr">
-                        <td colspan="2">&nbsp;</td>
-                        <td colspan="2" class="item_r">VAT</td>
-                        <td class="item_r">Rs. {{TotalVat}}</td>
-                    </tr>
-                    <tr id="total_tr">
-                        <td colspan="2">&nbsp;</td>
-                        <td colspan="2" class="total" id="total_currency"><span
-                            class="currency"> </span> Total</td>
-                        <td class="total">Rs. {{Totalamount}}</td>
-                    </tr>
-                <tr id="total_tr">
-                        <td colspan="2">Goods Received in Good Condition<br><br>  </td>
-                        <td colspan="2" class="total" id="total_currency"><span
-                            class="currency"> </span></td>
-                        <td class=""><small>For</small>&nbsp;<I><b>SANJIVIKA
-                                    ELECTRONICS</b></I>
-                                    <br><br> Authorized Signature</td>
-                    </tr>
-                        <tr id="total_tr">
-                        
-                        <td colspan="2">T & C<br>&#8226; Warranty is the sole liability of
-                            Manufacturer. <b>E.&.O.E</b><br> &#8226; Goods Once sold
-                            cannot be taken back or exchanged.<br> &#8226; Showroom is
-                            not responsible  for any transit damage.
-                        </td>
-                        <td colspan="2" class="total" id="total_currency"><span
-                            class="currency"> </span></td>
-                        <td class=""></td>
+					<tr id="net_total_tr">
+						<td colspan="2">&nbsp;</td>
+						<td colspan="2" class="item_r">Net Total</td>
+						<td class="item_r">Rs. {{costTotal}}</td>
+					</tr>
+					<tr id="vat_tr">
+						<td colspan="2">&nbsp;</td>
+						<td colspan="2" class="item_r">VAT</td>
+						<td class="item_r">Rs. {{TotalVat}}</td>
+					</tr>
+					<tr id="total_tr">
+						<td colspan="2">&nbsp;</td>
+						<td colspan="2" class="total" id="total_currency"><span
+							class="currency"> </span> Total</td>
+						<td class="total">Rs. {{Totalamount}}</td>
+					</tr>
+					<tr id="total_tr">
+						<td colspan="2">Goods Received in Good Condition<br> <br>
+						</td>
+						<td colspan="2" class="total" id="total_currency"><span
+							class="currency"> </span></td>
+						<td class=""><small>For</small>&nbsp;<I><b>SANJIVIKA
+									ELECTRONICS</b></I> <br> <br> Authorized Signature</td>
+					</tr>
+					<tr id="total_tr">
 
-                    </tr>
-                        <!-- <!-- <tr id="total_tr">
+						<td colspan="2">T & C<br>&#8226; Warranty is the sole
+							liability of Manufacturer. <b>E.&.O.E</b><br> &#8226; Goods
+							Once sold cannot be taken back or exchanged.<br> &#8226;
+							Showroom is not responsible for any transit damage.
+						</td>
+						<td colspan="2" class="total" id="total_currency"><span
+							class="currency"> </span></td>
+						<td class=""></td>
+
+					</tr>
+					<!-- <!-- <tr id="total_tr">
                         <td colspan="5"><b>Auth.&nbsp;Dealers :- </b> <br> SAMSUNG &#x2595;&nbsp; SONY  &#x2595;&nbsp; Whirpool  &#x2595;&nbsp;L.G &#x2595; SANSUI  &#x2595;&nbsp;Carrier &#x2595;&nbsp; lenovo  &#x2595;&nbsp;Dell  &#x2595;&nbsp;
                         Haier &#x2595;&nbsp;Nikon &#x2595;&nbsp;PHILIPS &#x2595;&nbsp;KENT &#x2595;&nbsp;hp &#x2595;&nbsp;EUREKA FORBES &#x2595;&nbsp;IFB &#x2595;&nbsp;</td>
                         <td colspan="2" class="total" id="total_currency"><span
                             class="currency"> </span></td>
                         <td class=""></td>
 
-                    </tr> --> 
-                    </tr>
-                
-                </tfoot>
-                <tbody>
-                    <!--   <tr class="item odd">
+                    </tr> -->
+					</tr>
+
+				</tfoot>
+				<tbody>
+					<!--   <tr class="item odd">
                         <td class="item_l">sr no</td>
                         <td class="item_l">Product Details</td>
                         <td class="item_r">Unit Price</td>
                         <td class="item_r">VAT</td>
                         <td class="item_r">Net Subtotal</td>
                     </tr> -->
-                    <tr class="item" ng-repeat="bill in tableData">
-                        <td class="item_l" style="font-size: 15px;">{{$index+1}}</td>
-                        <td class="item_l" style="font-size: 15px;">{{bill.brand.brandName}}&nbsp;/&nbsp;{{bill.product.productname}}&nbsp;/&nbsp;{{bill.modelNumber}}&nbsp;/&nbsp;{{bill.serialNumber}}</td>
-                        <td class="item_r" style="font-size: 15px;">Rs. {{bill.unitPrice}}</td>
-                        <td class="item_r" style="font-size: 15px;">Rs. &nbsp;{{bill.vatAmount}}&nbsp;@&nbsp;{{bill.vatPercent}}%</td>
-                        <td class="item_r" style="font-size: 15px;">Rs. {{bill.unitPrice + bill.vatAmount}}</td>
-                    </tr>
-                    <!--  <tr class="item odd">
+					<tr class="item" ng-repeat="bill in tableData"
+						style="height: 100px;">
+						<td class="item_l" style="font-size: 15px;">{{$index+1}}</td>
+						<td class="item_l" style="font-size: 15px;">{{bill.brand.brandName}}&nbsp;/&nbsp;{{bill.product.productname}}&nbsp;/&nbsp;{{bill.modelNumber}}&nbsp;/&nbsp;{{bill.serialNumber}}</td>
+						<td class="item_r" style="font-size: 15px;">Rs.
+							{{bill.unitPrice}}</td>
+						<td class="item_r" style="font-size: 15px;">Rs.
+							&nbsp;{{bill.vatAmount}}&nbsp;@&nbsp;{{bill.vatPercent}}%</td>
+						<td class="item_r" style="font-size: 15px;">Rs.
+							{{bill.unitPrice + bill.vatAmount}}</td>
+					</tr>
+					<!--  <tr class="item odd">
                         <td class="item_l"></td>
                         <td class="item_l"></td>
                         <td class="item_r"></td>
                         <td class="item_r"></td>
                         <td class="item_r"></td>
                     </tr> -->
-                </tbody>
-            </table>
+				</tbody>
+			</table>
 
-            <button id="saveandprint" class="btn btn-primary"onclick="myFunction()">Save & Print</button>
-        </div>
+			<button id="saveandprint" class="btn btn-primary"
+				onclick="myFunction()">Save & Print</button>
+		</div>
 </body>
 <script>
-    function myFunction() {
-        window.print();
-    }
-    $(document).ready(function() {
+	function myFunction() {
+		window.print();
+	}
+	$(document).ready(function() {
 
-        $('#modelSearch').modal('show');
+		$('#modelSearch').modal('show');
 
-    });
-    function openCustomermodel() {
+	});
+	function openCustomermodel() {
 
-        $('#modelSearch').modal('show');
-    }
+		$('#modelSearch').modal('show');
+	}
 
-    /*   function openModelAddCustomer() {
-          debugger;
-          $('#modelAddCustomer').modal('show');
-      }
-     */
-    function openModelSerachProduct() {
+	/*   function openModelAddCustomer() {
+	      debugger;
+	      $('#modelAddCustomer').modal('show');
+	  }
+	 */
+	function openModelSerachProduct() {
 
-        $('#ModelProductSearch').modal('show');
-    }
-    // $(document).ready(function () {
-    //  $('#modelAddCustomer').modal('hide');
-    //     // $('#modelAddCustomer').modal('show');
+		$('#ModelProductSearch').modal('show');
+	}
+	// $(document).ready(function () {
+	//  $('#modelAddCustomer').modal('hide');
+	//     // $('#modelAddCustomer').modal('show');
 
-    // });
+	// });
 
-    $('i').tooltip();
-    // $('#client-details').tooltip();
-    //limit check box click
+	$('i').tooltip();
+	// $('#client-details').tooltip();
+	//limit check box click
 </script>
 
 </html>
