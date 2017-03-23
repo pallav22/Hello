@@ -1,332 +1,68 @@
-
+<style type="text/css">
+.cart {
+    overflow:hidden;
+    padding:10px 3px;
+    background: yellow;
+}
+</style>
+<script type="text/javascript">
+$('span').tooltip();
+</script>
+ <div class="row">
+                    <div class="col-lg-12">
+                      <h1 class="page-header">
+                          <small>View Stock</small>
+                        </h1>
+                        
+                    </div>
+                </div>
 <div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
-		<!-- <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-table"></i> Tables
-                            </li>
-                        </ol> -->
-	</div>
+    <div class="col-lg-12"> 
+    <div class="form-group pull-right">
+    <input type="text" class="search form-control" ng-model="searchItem"placeholder="Search item here ">
 </div>
-<!-- /.row -->
+</div>
+        <div class="col-lg-12">  
+                <table class="table table-striped">
+                    <thead >
+                            <tr>
+                                <th ng-click="sort('brand.brandName')" >Brand Name </th>
+                                <th ng-click="sort('product.productname')">Product</th>
+                                <th ng-click="sort('modelNumber')">Model Number</th>
+                                <th>Serial Number</th>
+                                <th>MRP</th>
+                                <th>DP</th>
+                                <th ng-click="sort('godown.godownName')">Godown Name</th>
+                                <th>Avability</th>
+                       
+                            </tr>
+                    </thead>
+                    <tbody>
+                            <!-- <tr  ng-repeat="x in viewItem | filter : searchItem"> -->
+                            <tr dir-paginate="x in viewItem | itemsPerPage:50 | orderBy: sortKey:reverse | filter : searchItem">
+                                <td>{{x.brand.brandName}}</td>
+                                <td>{{x.product.productname}}</td>
+                                <td>{{x.modelNumber}}</td>
+                                <td>{{x.serialNumber}}</td>
+                                   <td>{{x.mrp}}</td>
+                                      <td>{{x.dp}}</td>
+                                <td>{{x.godown.godownName}}</td>
+                                <td><span  ng-if="x.status!=0"class="glyphicon glyphicon-ok-circle" data-placement="right" data-toggle="tooltip" data-original-title="In Stock "style="font-size:28px;color:green"></span>
+<span ng-if="x.status==0" class="fa fa-times-circle-o" data-placement="right" data-toggle="tooltip" data-original-title="Out Of Stock" style="font-size:32px;color:Red"></span>
+                                </td>
+                              
+                            </tr>
+                        
+                    </tbody>
+                </table>
+               <div style="text-align:center">
+                          <dir-pagination-controls
+                          max-size="5"
+                          direction-links="true"
+                          boundary-links="true" >
+                          </dir-pagination-controls> 
+                        </div>
+        </div>
 
-<div class="row">
-	<div class="col-lg-6">
-		<h2>Bordered Table</h2>
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Page</th>
-						<th>Visits</th>
-						<th>% New Visits</th>
-						<th>Revenue</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>/index.html</td>
-						<td>1265</td>
-						<td>32.3%</td>
-						<td>$321.33</td>
-					</tr>
-					<tr>
-						<td>/about.html</td>
-						<td>261</td>
-						<td>33.3%</td>
-						<td>$234.12</td>
-					</tr>
-					<tr>
-						<td>/sales.html</td>
-						<td>665</td>
-						<td>21.3%</td>
-						<td>$16.34</td>
-					</tr>
-					<tr>
-						<td>/blog.html</td>
-						<td>9516</td>
-						<td>89.3%</td>
-						<td>$1644.43</td>
-					</tr>
-					<tr>
-						<td>/404.html</td>
-						<td>23</td>
-						<td>34.3%</td>
-						<td>$23.52</td>
-					</tr>
-					<tr>
-						<td>/services.html</td>
-						<td>421</td>
-						<td>60.3%</td>
-						<td>$724.32</td>
-					</tr>
-					<tr>
-						<td>/blog/post.html</td>
-						<td>1233</td>
-						<td>93.2%</td>
-						<td>$126.34</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="col-lg-6">
-		<h2>Bordered with Striped Rows</h2>
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover table-striped">
-				<thead>
-					<tr>
-						<th>Page</th>
-						<th>Visits</th>
-						<th>% New Visits</th>
-						<th>Revenue</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>/index.html</td>
-						<td>1265</td>
-						<td>32.3%</td>
-						<td>$321.33</td>
-					</tr>
-					<tr>
-						<td>/about.html</td>
-						<td>261</td>
-						<td>33.3%</td>
-						<td>$234.12</td>
-					</tr>
-					<tr>
-						<td>/sales.html</td>
-						<td>665</td>
-						<td>21.3%</td>
-						<td>$16.34</td>
-					</tr>
-					<tr>
-						<td>/blog.html</td>
-						<td>9516</td>
-						<td>89.3%</td>
-						<td>$1644.43</td>
-					</tr>
-					<tr>
-						<td>/404.html</td>
-						<td>23</td>
-						<td>34.3%</td>
-						<td>$23.52</td>
-					</tr>
-					<tr>
-						<td>/services.html</td>
-						<td>421</td>
-						<td>60.3%</td>
-						<td>$724.32</td>
-					</tr>
-					<tr>
-						<td>/blog/post.html</td>
-						<td>1233</td>
-						<td>93.2%</td>
-						<td>$126.34</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-	<div class="col-lg-6">
-		<h2>Basic Table</h2>
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Page</th>
-						<th>Visits</th>
-						<th>% New Visits</th>
-						<th>Revenue</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>/index.html</td>
-						<td>1265</td>
-						<td>32.3%</td>
-						<td>$321.33</td>
-					</tr>
-					<tr>
-						<td>/about.html</td>
-						<td>261</td>
-						<td>33.3%</td>
-						<td>$234.12</td>
-					</tr>
-					<tr>
-						<td>/sales.html</td>
-						<td>665</td>
-						<td>21.3%</td>
-						<td>$16.34</td>
-					</tr>
-					<tr>
-						<td>/blog.html</td>
-						<td>9516</td>
-						<td>89.3%</td>
-						<td>$1644.43</td>
-					</tr>
-					<tr>
-						<td>/404.html</td>
-						<td>23</td>
-						<td>34.3%</td>
-						<td>$23.52</td>
-					</tr>
-					<tr>
-						<td>/services.html</td>
-						<td>421</td>
-						<td>60.3%</td>
-						<td>$724.32</td>
-					</tr>
-					<tr>
-						<td>/blog/post.html</td>
-						<td>1233</td>
-						<td>93.2%</td>
-						<td>$126.34</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="col-lg-6">
-		<h2>Striped Rows</h2>
-		<div class="table-responsive">
-			<table class="table table-hover table-striped">
-				<thead>
-					<tr>
-						<th>Page</th>
-						<th>Visits</th>
-						<th>% New Visits</th>
-						<th>Revenue</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>/index.html</td>
-						<td>1265</td>
-						<td>32.3%</td>
-						<td>$321.33</td>
-					</tr>
-					<tr>
-						<td>/about.html</td>
-						<td>261</td>
-						<td>33.3%</td>
-						<td>$234.12</td>
-					</tr>
-					<tr>
-						<td>/sales.html</td>
-						<td>665</td>
-						<td>21.3%</td>
-						<td>$16.34</td>
-					</tr>
-					<tr>
-						<td>/blog.html</td>
-						<td>9516</td>
-						<td>89.3%</td>
-						<td>$1644.43</td>
-					</tr>
-					<tr>
-						<td>/404.html</td>
-						<td>23</td>
-						<td>34.3%</td>
-						<td>$23.52</td>
-					</tr>
-					<tr>
-						<td>/services.html</td>
-						<td>421</td>
-						<td>60.3%</td>
-						<td>$724.32</td>
-					</tr>
-					<tr>
-						<td>/blog/post.html</td>
-						<td>1233</td>
-						<td>93.2%</td>
-						<td>$126.34</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-	<div class="col-lg-6">
-		<h2>Contextual Classes</h2>
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover table-striped">
-				<thead>
-					<tr>
-						<th>Page</th>
-						<th>Visits</th>
-						<th>% New Visits</th>
-						<th>Revenue</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="active">
-						<td>/index.html</td>
-						<td>1265</td>
-						<td>32.3%</td>
-						<td>$321.33</td>
-					</tr>
-					<tr class="success">
-						<td>/about.html</td>
-						<td>261</td>
-						<td>33.3%</td>
-						<td>$234.12</td>
-					</tr>
-					<tr class="warning">
-						<td>/sales.html</td>
-						<td>665</td>
-						<td>21.3%</td>
-						<td>$16.34</td>
-					</tr>
-					<tr class="danger">
-						<td>/blog.html</td>
-						<td>9516</td>
-						<td>89.3%</td>
-						<td>$1644.43</td>
-					</tr>
-					<tr>
-						<td>/404.html</td>
-						<td>23</td>
-						<td>34.3%</td>
-						<td>$23.52</td>
-					</tr>
-					<tr>
-						<td>/services.html</td>
-						<td>421</td>
-						<td>60.3%</td>
-						<td>$724.32</td>
-					</tr>
-					<tr>
-						<td>/blog/post.html</td>
-						<td>1233</td>
-						<td>93.2%</td>
-						<td>$126.34</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="col-lg-6">
-		<h2>Bootstrap Docs</h2>
-		<p>
-			For complete documentation, please visit <a target="_blank"
-				href="http://getbootstrap.com/css/#tables">Bootstrap's Tables
-				Documentation</a>.
-		</p>
-	</div>
-</div>
-<!-- /.row -->
 
 </div>

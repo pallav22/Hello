@@ -7,4 +7,5 @@ sanjivikaElectronics.controller('DashboardCtrl', function ($scope, Idle, Keepali
 	sanjivikaElectronics.run(['Idle', function(Idle) {
 		  Idle.watch();
 		}]);
+	
      });

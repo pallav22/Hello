@@ -1,0 +1,276 @@
+<style type="text/css">
+.cart {
+    overflow: hidden;
+    padding: 10px 3px;
+    background: yellow;
+}
+ @media print
+    {
+      #nonprint1{
+      display:none;
+      } 
+      #nonprint{
+      display:none;
+      } 
+      .close{
+          display:none;
+      }
+       #saveandprint{
+          display:none;
+      }
+    }
+    #invoice-amount{
+    width:700px !important;
+    }
+</style>
+<script type="text/javascript">
+    
+</script>
+<div class="row" id="nonprint1">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            <small>View All Invoice</small>
+        </h1>
+
+    </div>
+</div>
+<div class="row" id="nonprint">
+    <div class="col-lg-12">
+        <div class="form-group pull-right">
+            <input type="text" class="search form-control" ng-model="searchItem"
+                placeholder="Search item here?">
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Invoice Id </th>
+                    <th>Cutomer Name</th>
+                    <th>Cutomer Mobile No</th>
+                    <th>Product Detailsr</th>
+                    <th><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="margin-bottom: 3px;"> Selling Price</th>
+                    <th>Sold Location</th>
+                    <th>Print Invoice</th>
+                    <th>Cancel Invoice</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr  ng-repeat="x in viewItem | filter : searchItem"> -->
+                <tr
+                    dir-paginate="x in viewItem | itemsPerPage:50 | orderBy: sortKey:reverse | filter : searchItem">
+                    <td>{{x.invoiceId}}</td>
+                    <td>{{x.customer.prefix}} {{x.customer.firstName}}
+                        {{x.customer.secondName}}</td>
+                    <td>{{x.customer.mobile}}</td>
+                    <td><li ng-repeat="p in x.item">{{$index+1}}.
+                            {{p.brand.brandName}}/{{p.product.productname}}/{{p.modelNumber}}/{{p.serialNumber}}</li></td>
+                    <td><li ng-repeat="p in x.item">{{$index+1}}. 
+                            <img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="margin-bottom: 3px;"> {{p.sp}}</li></td>
+                                <td>{{x.soldLocation}}</td>
+                    <td><button type="submit" style="height: 32p" ng-click="printInvoice(x.invoiceId)"class="btn btn-primary">Print</button></td>
+                    <td><button type="submit" style="height: 32px;"class="btn btn-primary">Cancel</button></td>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+        <div style="text-align: center">
+            <dir-pagination-controls max-size="5" direction-links="true"
+                boundary-links="true"> </dir-pagination-controls>
+        </div>
+    </div>
+
+
+</div>
+<!-- Model For Print Invoice  -->
+<div class="modal fade" id="PrintInvoceModel" tabindex="-1"
+        role="dialog" aria-labelledby="memberModalLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+        <div class="modal-dialog">
+            <div class="modal-content" ng-class=" active" style="
+    width: 775px;
+">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="closeModel()"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div id="invoice" class="pagestyle" style="
+    margin-bottom: 0px;
+    padding-top: 17px;
+    margin-top: 18px;
+">
+        <div id="invoice-header">
+            <img alt="Mainlogo_large" class="logo screen" src="Images/Logo.png" />
+            <div class="vcard" id="company-address">
+                <h2>
+                    <strong> Invoice {{invoiceNumber}}</strong>
+                </h2>
+                <h4>
+                    <small>{{Date1}}</small>
+                </h4>
+                <h6>
+                    <small style="font-size: 17px !important;"> Authorized
+                        Dealer</small>
+                </h6>
+                <span>TIN (VAT): 10301228020</span><br> <span>TIN C.S.T:
+                    10301228117</span>
+
+            </div>
+
+            <div id="invoice-info">
+
+                <div class="fn">
+                    <strong> Customer Details</strong>
+
+                </div>
+                <div class="org">{{Prefix}}. {{firstName}} {{secondName}}</div>
+                <div class="adr">
+                    <div class="street-address">
+                        {{street}}<br /> {{street1}} <br /> {{city}} {{postal}}
+                    </div>
+                    <div class="locality">{{state}}</div>
+
+                    <div id="your-tax-number">Mob : - {{mobileNo}}</div>
+                </div>
+
+            </div>
+
+            <div class="vcard" id="client-details" data-placement="right"
+                data-toggle="tooltip" data-original-title="Select Shop Address">
+                <div class="fn org">
+                    <!--         <strong>
+              SHOP Address
+            </strong> -->
+                </div>
+                <div>
+                    <strong> Shop Address</strong> <!-- <select ng-model="selectedaddress"
+                        ng-change="getAddress()">
+                        <option value="Tilakmaidan">Tilak maidan</option>
+                        <option value="Plaza">Plaza</option>
+                        <option value="emall">emall</option>
+
+                    </select> -->
+                </div>
+                <div class="adr" ng-if="tilak">
+                    <div class="street-address">
+                        <strong> Sanjivika Electronics</strong><br /> <small>
+                            Tilak maidan Road</small><br />
+                    </div>
+
+                    <div id="company-postcode">
+                        <span class="region">Muzaffarpur</span>
+                        <!-- <span class="postal-code">842002</span> -->
+                    </div>
+                    <div class="locality">Contanct No:2244653 , 2244655</div>
+                </div>
+                <div class="adr" ng-if="palza">
+                    <div class="street-address">
+                        <strong> Sanjivika Electronics</strong> <strong> SAMSUNG
+                            PLAZA</strong><br> <small>U.B Tower ,Old Tejpal Building
+                            Saraiyaganj</small>
+                    </div>
+
+                    <div id="company-postcode">
+                        <span class="region">Muzaffarpur</span>
+                        <!-- <span class="postal-code">842002</span> -->
+                    </div>
+                    <div class="locality">Contanct No:2221076 , 2221001</div>
+                </div>
+                <div class="adr" ng-if="emall">
+                    <div class="street-address">
+                        <strong> Sanjivika Electronics</strong> <strong> e-mall </strong><br>
+
+                        <small> Amar Cinema Road</small>
+
+                    </div>
+
+                    <div id="company-postcode">
+                        <span class="region">Muzaffarpur</span>
+                        <!-- <span class="postal-code">842002</span> -->
+                    </div>
+                    <div class="locality">Contanct No:2243655 M:9504092251</div>
+                </div>
+                <!-- <div class="email">
+                    Sanjivika@email.com
+                </div> -->
+                <!-- <div id="sales-tax-reg-number">
+                    <span>TIN (VAT): 10301228020</span><br>
+                    <span>TIN C.S.T: 10301228117</span>
+                </div>
+ -->
+            </div>
+
+            <table id="invoice-amount">
+                <thead>
+                    <tr id="header_row">
+                        <th class="quantity_th" style="font-size: 1em; border: 1px solid;">Sr.No</th>
+                        <th class="left details_th"
+                            style="font-size: 1em; border: 1px solid;">Product Details </th>
+                        <th class="unitprice_th"
+                            style="font-size: 1em; border: 1px solid;">Unit Price
+                        </th>
+                        <th class="salestax_th" style="font-size: 1em; border: 1px solid;">VAT</th>
+                        <th class="subtotal_th" style="font-size: 1em; border: 1px solid;">Net Subtotal </th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                    <tr id="net_total_tr">
+                        <td colspan="2">&nbsp;</td>
+                        <td colspan="2" class="item_r">Net Total</td>
+                        <td class="item_r"><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="padding-top: 3px;margin-left: 9px;">{{costTotal}}</td>
+                    </tr>
+                    <tr id="vat_tr">
+                        <td colspan="2">&nbsp;</td>
+                        <td colspan="2" class="item_r">VAT</td>
+                        <td class="item_r"><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="padding-top: 3px;margin-left: 17px;">{{TotalVat}}</td>
+                    </tr>
+                    <tr id="total_tr">
+                        <td colspan="2">&nbsp; Duplicate Copy Of Invoice</td>
+                        <td colspan="2" class="total" id="total_currency"><span
+                            class="currency"> </span> Total</td>
+                        <td class="total"><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="padding-top: 4px;margin-left:17px;width:8px;">{{Totalamount}}</td>
+                    </tr>
+                    
+                </tfoot>
+                <tbody>
+                    <!--   <tr class="item odd">
+                        <td class="item_l">sr no</td>
+                        <td class="item_l">Product Details</td>
+                        <td class="item_r">Unit Price</td>
+                        <td class="item_r">VAT</td>
+                        <td class="item_r">Net Subtotal</td>
+                    </tr> -->
+                    <tr class="item" ng-repeat="bill in dataForItem">
+                        <td class="item_l" style="font-size: 15px;">{{$index+1}}</td>
+                        <td class="item_l" style="font-size: 15px;">{{bill.brand.brandName}}&nbsp;/&nbsp;{{bill.product.productname}}<br>{{bill.modelNumber}}<br>{{bill.serialNumber}}</td>
+                        <td class="item_r" style="font-size: 15px;"><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="padding-top: 4px;">{{bill.unitPrice}}</td>
+                        <td class="item_r" style="font-size: 15px;"><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="padding-top: 4px;">&nbsp;{{bill.vatAmount}}&nbsp;@&nbsp;{{bill.vatPercent}}%</td>
+                        <td class="item_r" style="font-size: 15px;"><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="padding-top: 4px;padding-left: 21px;">{{bill.unitPrice + bill.vatAmount}}</td>
+                    </tr>
+                    <!--  <tr class="item odd">
+                        <td class="item_l"></td>
+                        <td class="item_l"></td>
+                        <td class="item_r"></td>
+                        <td class="item_r"></td>
+                        <td class="item_r"></td>
+                    </tr> -->
+                </tbody>
+            </table>
+
+            <button onclick="myFunction()" id="saveandprint">Save & Print</button>
+        </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function myFunction() {
+        window.print();
+         $('#PrintInvoceModel').modal('hide');
+    }
+    </script>

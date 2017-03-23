@@ -1,3 +1,3 @@
-sanjivikaElectronics.controller('AddGodownCtrl', function () {
+// sanjivikaElectronics.controller('AddGodownCtrl', function () {
  
-     });
+//      });

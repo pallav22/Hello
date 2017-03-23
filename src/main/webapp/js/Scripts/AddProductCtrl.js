@@ -1,3 +1,3 @@
-sanjivikaElectronics.controller('AddProductCtrl', function () {
+// sanjivikaElectronics.controller('AddProductCtrl', function () {
  
-     });
+//      });
