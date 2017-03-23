@@ -1,0 +1,15 @@
+CREATE TABLE phase2.product
+(
+  id bigint NOT NULL,
+  productname character varying(255) NOT NULL,
+  barnd_id bigint NOT NULL,
+  CONSTRAINT product_pkey PRIMARY KEY (productname, barnd_id),
+  CONSTRAINT fk_bck90idda99be5qjsqjbr9w7s FOREIGN KEY (barnd_id)
+      REFERENCES phase2.brand (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE phase2.product
+  OWNER TO postgres;
