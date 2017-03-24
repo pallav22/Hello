@@ -1,15 +1,17 @@
-CREATE TABLE phase2.product
-(
-  id bigint NOT NULL,
-  productname character varying(255) NOT NULL,
-  barnd_id bigint NOT NULL,
-  CONSTRAINT product_pkey PRIMARY KEY (productname, barnd_id),
-  CONSTRAINT fk_bck90idda99be5qjsqjbr9w7s FOREIGN KEY (barnd_id)
-      REFERENCES phase2.brand (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE phase2.product
-  OWNER TO postgres;
+CREATE TABLE mydb1.`product` (
+  `id` BIGINT(20) NOT NULL,
+  `productname` VARCHAR(255) DEFAULT NULL,
+  `barnd_id` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`productname`,`barnd_id`),
+  KEY `FK_bck90idda99be5qjsqjbr9w7s` (`barnd_id`),
+  CONSTRAINT `FK_bck90idda99be5qjsqjbr9w7s` FOREIGN KEY (`barnd_id`) REFERENCES `brand` (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=latin1
+
+
+CREATE TABLE mydb1.`brand` (
+  `id` BIGINT(20) NOT NULL,
+  `brand_name` VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_hsu7w3m7wxvplg49ip7g0v5rr` (`brand_name`)
+) ENGINE=INNODB DEFAULT CHARSET=latin1
+

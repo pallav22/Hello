@@ -133,7 +133,7 @@ th,
 
 #client-details {
   border-top: 1px solid #ddd;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid black;
   float: left;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -142,7 +142,7 @@ th,
 }
 
 #invoice-info {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid black;
   clear: both;
   float: right;
   margin-bottom: 20px;
