@@ -206,19 +206,6 @@ public class Controller {
 	}
 	
 	
-	
-	/*@ApiOperation(value = "Get all item", notes = "Get all list of item")
-	@ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Success", response = List.class),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})
-	@RequestMapping(value = "/api/items", method = RequestMethod.GET)
-	public List<Item> getAllItem() {
-
-		return itemService.getAllItems();
-	}*/
 
 	@ApiOperation(value = "Get all item available in Stock", notes = "Get all item available in Stock")
 	@ApiResponses(value = { 
