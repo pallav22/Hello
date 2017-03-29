@@ -162,7 +162,9 @@ sanjivikaElectronics.controller('ViewInvoiceCtrl', function($scope,
                 console.log($scope.TotalVat);
                 console.log($scope.Totalamount);
             }
-            $scope.InWordsTotalamount=convertNumberToWords($scope.Totalamount);
+            $scope.InWords=convertNumberToWords($scope.Totalamount);
+            
+            $scope.InWordsTotalamount= $scope.InWords+"Rupees Only"
             
                 });
 

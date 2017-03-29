@@ -405,8 +405,9 @@ sanjivikaElectronics
 									+ $scope.cost + $scope.vatAmount;
 							$scope.Totalamount = Math
 									.round($scope.Totalamount1 * 100) / 100;
-							$scope.InWordsTotalamount = convertNumberToWords($scope.Totalamount);
-
+							 $scope.InWords=convertNumberToWords($scope.Totalamount);
+					            
+					            $scope.InWordsTotalamount= $scope.InWords+" Rupees Only"
 							$scope.TotalVat1 = $scope.vatAmount
 									+ $scope.TotalVat;
 							$scope.TotalVat = Math
