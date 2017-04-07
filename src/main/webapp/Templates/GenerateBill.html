@@ -97,14 +97,27 @@
 
 						</form>
 						<div class="row">
-  <div class="col-md-6"> </div>
+							<div class="col-md-6"></div>
 							<div class="col-md-3">
-								<!-- ngIf: Showtable --><input type="text" class="search form-control ng-scope ng-pristine ng-valid" ng-model="searchItem"  ng-change="Changed()" placeholder="Search item here " ng-show="Showtable==true"><!-- end ngIf: Showtable --></div><div class="col-md-3">
-								<!-- ngIf: Showtable --><button style="width: 100% !important;" id="AddtoBill" ng-click="addToBill()" class="btn btn-primary ng-scope" ng-if="Showtable" disabled="true">Add</button><!-- end ngIf: Showtable --></div></div>
+								<!-- ngIf: Showtable -->
+								<input type="text"
+									class="search form-control ng-scope ng-pristine ng-valid"
+									ng-model="searchItem" ng-change="Changed()"
+									placeholder="Search item here " ng-show="Showtable==true">
+								<!-- end ngIf: Showtable -->
+							</div>
+							<div class="col-md-3">
+								<!-- ngIf: Showtable -->
+								<button style="width: 100% !important;" id="AddtoBill"
+									ng-click="addToBill()" class="btn btn-primary ng-scope"
+									ng-if="Showtable" disabled="true">Add</button>
+								<!-- end ngIf: Showtable -->
+							</div>
+						</div>
 						<form name="modeltable">
 							<table class="table table-striped" ng-if="Showtable">
-								
-						<!-- 	<div class="row">
+
+								<!-- 	<div class="row">
 							<div class="col-md-4">
 								<input type="text" class="search form-control" ng-model="xyz"
 									placeholder="Search item here " ng-if="Showtable"
@@ -406,16 +419,13 @@
 		<div id="invoice-header">
 			<img alt="Mainlogo_large" class="logo screen" src="Images/Logo.png" />
 			<div>
-				<h2>
-					
-				</h2>
+				<h2></h2>
 			</div>
 
 			<div class="vcard" id="company-address">
 				<h2>
-					<strong style="font-size: 20px;">Retail
-                        Invoice</strong><br><br>
-                        <strong> Invoice No{{invoiceNumber}}</strong>
+					<strong style="font-size: 20px;">Retail Invoice</strong><br> <br>
+					<strong> Invoice No{{invoiceNumber}}</strong>
 				</h2>
 				<h4>
 					<small>{{Date1}}</small>
@@ -477,7 +487,7 @@
 						<span class="region">Muzaffarpur 842001</span>
 						<!-- <span class="postal-code">842002</span> -->
 					</div>
-					<div class="locality">Contanct No:2244653 , 2244655</div>
+					<div class="locality">Contact No:2244653 , 2244655</div>
 				</div>
 				<div class="adr" ng-if="palza">
 					<div class="street-address">
@@ -490,7 +500,7 @@
 						<span class="region">Muzaffarpur 842001</span>
 						<!-- <span class="postal-code">842002</span> -->
 					</div>
-					<div class="locality">Contanct No:2221076</div>
+					<div class="locality">Contact No:2221076</div>
 				</div>
 				<div class="adr" ng-if="emall">
 					<div class="street-address">
@@ -504,7 +514,7 @@
 						<span class="region">Muzaffarpur 842001</span>
 						<!-- <span class="postal-code">842002</span> -->
 					</div>
-					<div class="locality">Contanct No:2243655 M:9504092251</div>
+					<div class="locality">Contact No:2243655 M:9504092251</div>
 				</div>
 				<!-- <div class="email">
                     Sanjivika@email.com
@@ -548,7 +558,7 @@
 						<td class="item_r">Rs. {{TotalVat}}</td>
 					</tr>
 					<tr id="total_tr">
-						<td colspan="2">{{InWordsTotalamount}} </td>
+						<td colspan="2">{{InWordsTotalamount}}</td>
 						<td colspan="2" class="total" id="total_currency"><span
 							class="currency"> </span> Total</td>
 						<td class="total">Rs. {{Totalamount}}</td>
@@ -616,7 +626,9 @@
 			<button id="saveandprint" class="btn btn-primary"
 				onclick="myFunction()">Save & Print</button>
 		</div>
-</body>
+		
+
+
 <script>
 	function myFunction() {
 		window.print();

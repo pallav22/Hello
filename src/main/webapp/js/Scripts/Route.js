@@ -54,6 +54,12 @@
            templateUrl:'Templates/GenerateBill.html',
            controller:'GenerateBillCtrl'
         })
+        // Admin Page added by Prashant
+        .state('ViewAdminStock', {
+           url: '/ViewAdminStock',           
+           templateUrl:'Templates/ViewAdminStock.html',
+           controller:'ViewAdminStockCtrl'
+        })
   
   
 

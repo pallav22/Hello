@@ -16,17 +16,16 @@ sanjivikaElectronics
 										});
 							});
 
-					$scope.SelectedBrand ="-1";
+					$scope.SelectedBrand = "-1";
 					$scope.uploadexceldisableproduct = true;
 
 					$scope.brand = '';
 					$scope.brandMsg = '';
-					$scope.Godown=" ";
-					$scope.SelectedProduct ="-1";
-					$scope.SelectedGodown ="-1";
+					$scope.Godown = " ";
+					$scope.SelectedProduct = "-1";
+					$scope.SelectedGodown = "-1";
 					$scope.save = function() {
-						
-							
+
 						var body = {
 							"brandName" : $scope.brand
 
@@ -46,20 +45,22 @@ sanjivikaElectronics
 										function(data, status, headers, config) {
 											// $scope.rows1 = JSON.parse(data);
 											$scope.brandMsg = data;
-											$scope.uploadexceldisableproduct=true;
-											$scope.SelectedBrand ="-1";
-											$scope.SelectedProduct ="-1";
-											$scope.SelectedGodown ="-1";
-											$scope.fileModel=null;
-											angular.element("input[type='file']").val(null);
-											$scope.msgStock="";
-											$scope.productMsg="";
-											
-											$scope.GodownMsg="";
-											$scope.Godown="";
-											$scope.Product="";
-//											 $scope.formTest.$setPristine();
-//											 $scope.formTestExcelUpload.$setPristine();
+											$scope.uploadexceldisableproduct = true;
+											$scope.SelectedBrand = "-1";
+											$scope.SelectedProduct = "-1";
+											$scope.SelectedGodown = "-1";
+											$scope.fileModel = null;
+											angular.element(
+													"input[type='file']").val(
+													null);
+											$scope.msgStock = "";
+											$scope.productMsg = "";
+
+											$scope.GodownMsg = "";
+											$scope.Godown = "";
+											$scope.Product = "";
+											// $scope.formTest.$setPristine();
+											// $scope.formTestExcelUpload.$setPristine();
 											$http
 													.get(
 															'userController/api/brands')
@@ -69,9 +70,7 @@ sanjivikaElectronics
 																$scope.brandsDropDown = response.data;
 																;
 															});
-											$http
-													.get(
-															'userController/api/godowns')
+											$http.get('userController/api/godowns')
 													.then(
 															function(response) {
 
@@ -118,10 +117,10 @@ sanjivikaElectronics
 								$scope.godownsDropDown = response.data;
 								;
 							});
-				
+
 					$scope.saveProduct = function() {
-						//clear ng model for  upload from Excel
-						
+						// clear ng model for upload from Excel
+
 						var body = {
 							"productname" : $scope.Product,
 							"brand" : {
@@ -145,20 +144,22 @@ sanjivikaElectronics
 											// $scope.rows1 = JSON.parse(data);
 											$scope.productMsg = data;
 											$scope.Product = '';
-											$scope.uploadexceldisableproduct=true;
-											$scope.SelectedBrand ="-1";
-											$scope.SelectedProduct ="-1";
-											$scope.SelectedGodown ="-1";
-											$scope.fileModel=null;
-											angular.element("input[type='file']").val(null);
-											
-											$scope.msgStock="";
-										
-											$scope.brandMsg="";
-											$scope.GodownMsg="";
-											$scope.Godown="";
-											$scope.Product="";
-											$scope.brand="";
+											$scope.uploadexceldisableproduct = true;
+											$scope.SelectedBrand = "-1";
+											$scope.SelectedProduct = "-1";
+											$scope.SelectedGodown = "-1";
+											$scope.fileModel = null;
+											angular.element(
+													"input[type='file']").val(
+													null);
+
+											$scope.msgStock = "";
+
+											$scope.brandMsg = "";
+											$scope.GodownMsg = "";
+											$scope.Godown = "";
+											$scope.Product = "";
+											$scope.brand = "";
 											$http
 													.get(
 															'userController/api/brands')
@@ -212,7 +213,7 @@ sanjivikaElectronics
 					$scope.Godown = "";
 					$scope.GodownMsg = "";
 					$scope.saveGodown = function() {
-					
+
 						var body = {
 							godownName : $scope.Godown
 						};
@@ -230,19 +231,21 @@ sanjivikaElectronics
 										function(data, status, headers, config) {
 											$scope.GodownMsg = data;
 											$scope.Godown = '';
-											$scope.uploadexceldisableproduct=true;
-											$scope.SelectedBrand ="-1";
-											$scope.SelectedProduct ="-1";
-											$scope.SelectedGodown ="-1";
-											$scope.fileModel=null;
-											angular.element("input[type='file']").val(null);
-											$scope.brand="";
-											$scope.msgStock="";
-											$scope.productMsg="";
-											$scope.brandMsg="";
-											
-											$scope.Godown="";
-											$scope.Product="";
+											$scope.uploadexceldisableproduct = true;
+											$scope.SelectedBrand = "-1";
+											$scope.SelectedProduct = "-1";
+											$scope.SelectedGodown = "-1";
+											$scope.fileModel = null;
+											angular.element(
+													"input[type='file']").val(
+													null);
+											$scope.brand = "";
+											$scope.msgStock = "";
+											$scope.productMsg = "";
+											$scope.brandMsg = "";
+
+											$scope.Godown = "";
+											$scope.Product = "";
 											$http
 													.get(
 															'userController/api/brands')
@@ -285,27 +288,23 @@ sanjivikaElectronics
 					}
 
 					$scope.selectedBrand = function(SelectedBrand) {
-						
+
 						$http.get(
 								'userController/api/products?brandId='
 										+ $scope.SelectedBrand).then(
 								function(response) {
 									$scope.productDropDown = response.data;
-									$scope.uploadexceldisableproduct= false;
+									$scope.uploadexceldisableproduct = false;
 									$scope.GodownMsg = '';
-									$scope.msgStock='';
-								
-									
-									
+									$scope.msgStock = '';
 
 								});
 
 					}
 					// -----------------
-					$scope.saveStock = function(SelectedBrand, SelectedProduct,
-							SelectedGodown) {
+					$scope.saveStock = function(SelectedBrand, SelectedProduct,SelectedGodown) {
 						console.log($scope.fileModel);
-						
+
 						$scope.Final = [];
 						$scope.output = JSON.parse($scope.output);
 						$scope.output2 = JSON.parse(JSON
@@ -348,20 +347,20 @@ sanjivikaElectronics
 							}
 
 						}).success(function(data, status, headers, config) {
-							$scope.uploadexceldisableproduct=true;
-							$scope.SelectedBrand ="-1";
-							$scope.SelectedProduct ="-1";
-							$scope.SelectedGodown ="-1";
+							$scope.uploadexceldisableproduct = true;
+							$scope.SelectedBrand = "-1";
+							$scope.SelectedProduct = "-1";
+							$scope.SelectedGodown = "-1";
 							$scope.esxcl = 'file';
 							$scope.msgStock = "Uploaded Sucessfully"
-								$scope.fileModel=null;
-							$scope.brand="";
-							
-							$scope.productMsg="";
-							$scope.brandMsg="";
-							$scope.GodownMsg="";
-							$scope.Godown="";
-							$scope.Product="";
+							$scope.fileModel = null;
+							$scope.brand = "";
+
+							$scope.productMsg = "";
+							$scope.brandMsg = "";
+							$scope.GodownMsg = "";
+							$scope.Godown = "";
+							$scope.Product = "";
 							angular.element("input[type='file']").val(null);
 						}).error(function(data, status, headers, config) {
 							$scope._error = data;

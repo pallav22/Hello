@@ -21,6 +21,188 @@ $('span').tooltip();
     <div class="form-group pull-right">
     <input type="text" class="search form-control" ng-model="searchItem" placeholder="Search item here" >
 </div>
+
+
+
+<!--Prashant Model box start here-->
+        <div class="modal fade" id="modelAddCustomer" tabindex="-1"
+            role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="memberModalLabel">
+                            <strong>Update item.!</strong>
+                        </h4>
+
+                    </div>
+                    <!--          <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                          <small>Please Fill in the  Form below.</small>
+                        </h1>
+                    </div>
+                </div> -->
+                    <div id="FormCustomer"
+                        style="padding-top: 7px; padding-left: 11px;">
+
+                        <form name="form" ng-submit="saveItem()" role="form">
+
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="username">Brand Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
+
+                                        <input type="text" name="Prefix" id="Prefix"
+                                            class="form-control" ng-model="brandName" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Prefix</label> <span
+                                            ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
+                                            class="help-block">Prefix is Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="username">Product Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
+
+                                        <input type="text" name="Prefix" id="Prefix"
+                                            class="form-control" ng-model="productName" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Prefix</label> <span
+                                            ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
+                                            class="help-block">Prefix is Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="model">Model Number</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
+
+                                        <input type="text" name="street" id="street"
+                                            class="form-control" ng-model="modelNumber" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Model Number</label> <span
+                                            ng-show="form.street.$dirty && form.street.$error.required"
+                                            class="help-block">Street Address is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"><label for="serial">Serial Number</label></div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
+
+                                        <input type="text" name="street1" id="street1"
+                                            class="form-control" ng-model="serialNumber" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
+                                            ng-show="form.street1.$dirty && form.street1.$error.required"
+                                            class="help-block">Street Address Line2 Required </span>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                          <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"><label for="serial">MRP</label></div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
+
+                                        <input type="text" name="street1" id="street1"
+                                            class="form-control" ng-model="mrp" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
+                                            ng-show="form.street1.$dirty && form.street1.$error.required"
+                                            class="help-block">Street Address Line2 Required </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"><label for="serial">DP</label></div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
+
+                                        <input type="text" name="street1" id="street1"
+                                            class="form-control" ng-model="dp" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
+                                            ng-show="form.street1.$dirty && form.street1.$error.required"
+                                            class="help-block">Street Address Line2 Required </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"><label for="serial">Godown Name</label></div>
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
+										
+										
+										 <select class="form-control">                                       
+                                          <option ng-repeat="p in godownsDropDown" value="{{p.id}}" class="form-control">{{p.godownName}}</option>         
+                                 </select>
+                                 
+                                       <!--  <input type="text" name="street1" id="street1"
+                                            class="form-control" ng-model="godownName" required /> <label
+                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
+                                            ng-show="form.street1.$dirty && form.street1.$error.required"
+                                            class="help-block">Street Address Line2 Required </span> -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="row" style="padding-bottom: 11px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
+
+                                <div class="col-md-" style="padding-left: 70px;">
+                                    <div class="form-actions">
+                                        <button type="submit" ng-disabled="form.$invalid "
+                                            class="btn btn-primary">Submit</button>
+
+                                        <button type="submit" ng-disabled="form.$pristine "
+                                            ng-click="clearForm()" class="btn btn-primary">Reset</button>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                    </div>
+
+
+                    </form>
+                </div>
+            </div>
+            <!-- Prashant model box end here -->
+            
+            
 </div>
         <div class="col-lg-12">  
                 <table class="table table-striped">
@@ -48,6 +230,7 @@ $('span').tooltip();
                                   <span class="glyphicon sort-icon" ng-show="sortKey=='godown.godownName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                                 </th>
                                 <th>Avability</th>
+                                <th>Edit</th>
                        
                             </tr>
                     </thead>
@@ -63,7 +246,12 @@ $('span').tooltip();
                                 <td><span  ng-if="x.status!=0"class="glyphicon glyphicon-ok-circle" data-placement="right" data-toggle="tooltip" data-original-title="In Stock "style="font-size:28px;color:green"></span>
 <span ng-if="x.status==0" class="fa fa-times-circle-o" data-placement="right" data-toggle="tooltip" data-original-title="Out Of Stock" style="font-size:32px;color:Red"></span>
                                 </td>
-                              
+                                
+                              <td><a href='' ng-click="updateItemById(x.id)"><span
+                                class="glyphicon glyphicon-pencil" data-placement="right"
+                                data-toggle="tooltip" data-original-title="In Stock "
+                                style="font-size: 15px; color: blue"></span></a></td>
+                                
                             </tr>
                         
                     </tbody>

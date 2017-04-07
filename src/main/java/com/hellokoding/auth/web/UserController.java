@@ -1,13 +1,20 @@
 package com.hellokoding.auth.web;
 
+import io.swagger.annotations.Api;
+
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +28,6 @@ import com.hellokoding.auth.model.User;
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.validator.UserValidator;
-
-import io.swagger.annotations.Api;
 
 @Controller
 @Api(value = "User profile", description = "User profile creation", produces = "application/json")
@@ -70,8 +75,33 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-	public String welcome(Model model) {
-		return "Cashier";
+	public String welcome(Model model,Principal user,Authentication authentication) {
+		System.out.println("-----------------");
+		System.out.println(user.getName());
+		String url = "";
+		 
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+ 
+        List<String> roles = new ArrayList<String>();
+ 
+        for (GrantedAuthority a : authorities) {
+            roles.add(a.getAuthority());
+        }
+ 
+        if (isDba(roles)) {
+            url = "/db";
+        } else if (isAdmin(roles)) {
+            url = "/adminpage";
+        } else if (isUser(roles)) {
+            url = "/Cashier";
+        } else {
+            url = "/accessDenied";
+        }
+ 
+       // System.out.println("URL-"+url);
+        
+		//return "Cashier";
+		return url;
 	}
 
 	@RequestMapping(value = { "/unauthorized" }, method = RequestMethod.GET)
@@ -97,5 +127,27 @@ public class UserController {
 		m.put("status", HttpServletResponse.SC_OK + "");
 		return m; // Collections.singletonMap("token", session.getId());
 	}
+	
+	
+	private boolean isUser(List<String> roles) {
+        if (roles.contains("USER")) {
+            return true;
+        }
+        return false;
+    }
+ 
+    private boolean isAdmin(List<String> roles) {
+        if (roles.contains("ADMIN")) {
+            return true;
+        }
+        return false;
+    }
+ 
+    private boolean isDba(List<String> roles) {
+        if (roles.contains("ROLE_DBA")) {
+            return true;
+        }
+        return false;
+    }
 
 }
