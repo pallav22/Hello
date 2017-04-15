@@ -65,6 +65,7 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
 	$scope.saveItem = function() {				
 		$scope.Final = [];	
 		var body = {
+				"id" : $scope.id,
 				"modelNumber" : $scope.modelNumber,
 				"mrp" : $scope.mrp,
 				"serialNumber" : $scope.serialNumber,
@@ -83,7 +84,8 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
 			};
 		$scope.Final.push(body);
 		 
-		 console.log(body);
+		 console.log(JSON.stringify($scope.Final));
+		 debugger;
 		$http.put("userController/api/items", $scope.Final, {
 			headers : {
 				"Content-Type" : "application/json"

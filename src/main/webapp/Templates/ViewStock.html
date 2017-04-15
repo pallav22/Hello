@@ -160,11 +160,11 @@ $('span').tooltip();
                                 <div class="col-md-6">
                                     <div class="form-group"
                                         ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
-										
-										
-										 <select class="form-control">                                       
-                                          <option ng-repeat="p in godownsDropDown" value="{{p.id}}" class="form-control">{{p.godownName}}</option>         
-                                 </select>
+
+										 <select class="form-control">  
+										                                    
+                                          <option selected  ng-repeat="p in godownsDropDown" value="{{p.id}}" class="form-control">{{p.godownName}}</option>         
+                                 		</select>
                                  
                                        <!--  <input type="text" name="street1" id="street1"
                                             class="form-control" ng-model="godownName" required /> <label
