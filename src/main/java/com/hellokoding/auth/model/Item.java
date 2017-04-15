@@ -171,8 +171,4 @@ public class Item {
 		this.soldDate = soldDate;
 	}
 
-	
-	
-	
-
 }

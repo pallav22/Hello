@@ -168,8 +168,22 @@ sanjivikaElectronics.controller('ViewInvoiceCtrl', function($scope,
             
                 });
 
-    
-
     }
+    
+    $scope.cancelInvoice=function(invoicedata) {
+        bootbox.confirm("<b> Do you want To Cancel the Invoice <br><br/>\
+   Reason for Cancel:<br><br><textarea rows='4' cols='34.5'' id='invoiceCancelReason'> </textarea><br/>", function(result) {
+     // alert("Confirm result: " + result);
+     console.log(document.getElementById('invoiceCancelReason').value)
+     if(result==true){
+       console.log(invoicedata);
+     }
+     if(result==false){
+      console.log("not cancel")
+     }
+       
+   });
+   
+   }
     
 });

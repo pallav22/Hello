@@ -61,6 +61,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
  <script src='https://rawgit.com/ghostbar/angular-file-model/master/angular-file-model.js'></script>
+<script src="http://bootboxjs.com/bootbox.js"></script>
+
 
 <script src="js/Scripts/MyAppModule.js"></script>
 <script src="js/Scripts/Route.js"></script>

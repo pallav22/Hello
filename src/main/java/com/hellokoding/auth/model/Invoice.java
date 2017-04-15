@@ -2,6 +2,7 @@ package com.hellokoding.auth.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQuery(name = "Invoice.findByinvoiceId", query = "SELECT i FROM Invoice i WHERE i.invoiceId = ?1")
 public class Invoice {
+	
 	private int invoiceId;
 	private Customer customer;
 	private List<Item> item;
@@ -21,6 +23,9 @@ public class Invoice {
 	private String agentName;
 	private String soldLocation;
 
+	@Column(name="invStatus", columnDefinition="varchar2(1) DEFAULT 'available'")
+	private String invStatus;
+	
 	@ManyToOne
 	@JoinColumn(name = "customer_id", nullable = false)
 	public Customer getCustomer() {
