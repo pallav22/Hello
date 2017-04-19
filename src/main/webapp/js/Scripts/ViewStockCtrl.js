@@ -34,10 +34,16 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
 
     $scope.updateItemById = function(id) {
             console.log(id);
-
+            
+           
             var index = getSelectedIndex(id);
             var item = $scope.viewItem[index];
             $scope.id = item.id;
+            
+            $scope.defaultProductId = item.product.id;
+            $scope.SelectedBrand = item.brand.id;
+            $scope.editedSelectedGodown = item.godown.id;
+            
             $scope.modelNumber = item.modelNumber;
             $scope.serialNumber = item.serialNumber;
             $scope.mrp = item.mrp;
@@ -84,6 +90,7 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
                                     if ($scope.productDropDown!=0){
                                         $scope.hideEditProduct=true;
                                         $scope.showEditProduct=false;
+
                                     }
                                     // $scope.uploadexceldisableproduct = false;
                                     // $scope.GodownMsg = '';
@@ -96,6 +103,9 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
 
     $scope.saveItem = function() {
         $scope.Final = [];
+        if(document.getElementById('pId') != null)
+    	$scope.defaultProductId = document.getElementById('pId').value;
+
         var body = {
             "id": $scope.id,
             "modelNumber": $scope.modelNumber,
@@ -105,7 +115,7 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
             "dp": $scope.dp,
             "status": 1,
             "product": {
-                "id": 1 //$scope.productNameS
+                "id": $scope.defaultProductId
             },
             "brand": {
                 "id": $scope.SelectedBrand
@@ -130,6 +140,10 @@ sanjivikaElectronics.controller('ViewStockCtrl', function($scope,
             $scope.msg = "Item has been added successfully";
 
             $('#modelAddCustomer').modal('hide');
+            $http.get('userController/api/items').then(function(response) {
+
+                $scope.viewItem = response.data;
+            });
 
         }).error(function(data, status, headers, config) {
             $scope.msg = "Unable to save";

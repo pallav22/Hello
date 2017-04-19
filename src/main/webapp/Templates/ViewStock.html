@@ -4,6 +4,8 @@
     padding: 10px 3px;
     background: yellow;
 }
+input::-webkit-input-placeholder {color: black !important;
+font-weight: bold;} 
 </style>
 <script type="text/javascript">
 $('span').tooltip();
@@ -63,7 +65,7 @@ $('span').tooltip();
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" ng-if="showEditProduct"class="form-control" ng-model="productName" ng-disabled=true required />
-                                        <select  ng-if="hideEditProduct" class="form-control" ng-model="productNameS">
+                                        <select  ng-if="hideEditProduct" class="form-control" id="pId">
                                        <!--  <option disabled selected value=""> -- select a product -- </option> -->
                                             <option  ng-repeat="p in productDropDown" value="{{p.id}}" class="form-control">{{p.productname}}</option>
                                         </select>

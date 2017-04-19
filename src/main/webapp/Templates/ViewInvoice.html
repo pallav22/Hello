@@ -4,6 +4,8 @@
     padding: 10px 3px;
     background: yellow;
 }
+input::-webkit-input-placeholder {color: black !important;
+font-weight: bold;} 
  @media print
     {
       #nonprint1{
@@ -52,7 +54,7 @@
                     <th><img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="margin-bottom: 3px;"> Selling Price</th>
                     <th>Sold Location</th>
                     <th>Print Invoice</th>
-                    <th>Cancel Invoice</th>
+                   <!--  <th>Cancel Invoice</th> -->
 
 
                 </tr>
@@ -71,7 +73,7 @@
                             <img alt="Mainlogo_large" class="logo screen" src="Images/7px.png" style="margin-bottom: 3px;"> {{p.sp}}</li></td>
                                 <td>{{x.soldLocation}}</td>
                     <td><button type="submit" style="height: 32p" ng-click="printInvoice(x.invoiceId)"class="btn btn-primary">Print</button></td>
-                    <td><button type="submit" style="height: 32px;" class="btn btn-danger" ng-click="cancelInvoice(x.invoiceId)">Cancel</button></td>
+                    <!-- <td><button type="submit" style="height: 32px;" class="btn btn-danger" ng-click="cancelInvoice(x.invoiceId)">Cancel</button></td> -->
 
 
                 </tr>
@@ -90,7 +92,7 @@
         role="dialog" aria-labelledby="memberModalLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false" >
         <div class="modal-dialog">
             <div class="modal-content" ng-class=" active" style="
-    width: 775px;
+    width:822px;
 ">
                 <div class="modal-header">
                     <button type="button" class="close" ng-click="closeModel()"
@@ -165,7 +167,7 @@
                         <span class="region">Muzaffarpur</span>
                         <!-- <span class="postal-code">842002</span> -->
                     </div>
-                    <div class="locality">Contanct No:2244653 , 2244655</div>
+                    <div class="locality">Contact No:2244653 , 2244655</div>
                 </div>
                 <div class="adr" ng-if="palza">
                     <div class="street-address">
@@ -178,7 +180,7 @@
                         <span class="region">Muzaffarpur</span>
                         <!-- <span class="postal-code">842002</span> -->
                     </div>
-                    <div class="locality">Contanct No:2221076 , 2221001</div>
+                    <div class="locality">Contact No:2221076 , 2221001</div>
                 </div>
                 <div class="adr" ng-if="emall">
                     <div class="street-address">
@@ -192,7 +194,7 @@
                         <span class="region">Muzaffarpur</span>
                         <!-- <span class="postal-code">842002</span> -->
                     </div>
-                    <div class="locality">Contanct No:2243655 M:9504092251</div>
+                    <div class="locality">Contact No:2243655 M:9504092251</div>
                 </div>
                 <!-- <div class="email">
                     Sanjivika@email.com
