@@ -11,7 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
+/**
+ * @author Prashant
+ *
+ */
 @Entity
 @NamedQuery(name = "Invoice.findByinvoiceId", query = "SELECT i FROM Invoice i WHERE i.invoiceId = ?1")
 public class Invoice {
@@ -25,6 +30,9 @@ public class Invoice {
 
 	@Column(name="invStatus", columnDefinition="varchar2(1) DEFAULT 'available'")
 	private String invStatus;
+	
+
+	private String cancelReason;
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id", nullable = false)
@@ -80,5 +88,23 @@ public class Invoice {
 		this.soldLocation = soldLocation;
 	}
 
+	public String getInvStatus() {
+		return invStatus;
+	}
+
+	public void setInvStatus(String invStatus) {
+		this.invStatus = invStatus;
+	}
+
+	public String getCancelReason() {
+		return cancelReason;
+	}
+
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
+
+	
+	
 	
 }

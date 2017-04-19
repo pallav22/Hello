@@ -1,43 +1,36 @@
 <style type="text/css">
 .cart {
-    overflow:hidden;
-    padding:10px 3px;
+    overflow: hidden;
+    padding: 10px 3px;
     background: yellow;
 }
 </style>
 <script type="text/javascript">
 $('span').tooltip();
 </script>
- <div class="row">
-                    <div class="col-lg-12">
-                      <h1 class="page-header">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
                           <small>View Stock</small>
                         </h1>
-                        
-                    </div>
-                </div>
-<div class="row">
-    <div class="col-lg-12"> 
-    <div class="form-group pull-right">
-    <input type="text" class="search form-control" ng-model="searchItem" placeholder="Search item here" >
+    </div>
 </div>
-
-
-
-<!--Prashant Model box start here-->
-        <div class="modal fade" id="modelAddCustomer" tabindex="-1"
-            role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group pull-right">
+            <input type="text" class="search form-control" ng-model="searchItem" placeholder="Search item here">
+        </div>
+        <!--Prashant Model box start here-->
+        <div class="modal fade" id="modelAddCustomer" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 class="modal-title" id="memberModalLabel">
                             <strong>Update item.!</strong>
                         </h4>
-
                     </div>
                     <!--          <div class="row">
                     <div class="col-lg-12">
@@ -46,127 +39,98 @@ $('span').tooltip();
                         </h1>
                     </div>
                 </div> -->
-                    <div id="FormCustomer"
-                        style="padding-top: 7px; padding-left: 11px;">
-
+                    <div id="FormCustomer" style="padding-top: 7px; padding-left: 11px;">
                         <form name="form" ng-submit="saveItem()" role="form">
-
                             <div class="row" style="padding-top: 15px;">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2">
                                     <label for="username">Brand Name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
-
-                                        <input type="text" name="Prefix" id="Prefix"
-                                            class="form-control" ng-model="brandName" required /> <label
-                                            style="font-weight: 100; font-size: 13px;">Prefix</label> <span
-                                            ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
-                                            class="help-block">Prefix is Required</span>
+                                    <div class="form-group">
+                                            <select class="form-control" ng-model="SelectedBrand" ng-change="selectedBrand(SelectedBrand)">
+                                       <!--  <option disabled selected value=""> -- select a product -- </option> -->
+                                            <option ng-selected="{{p.brandName == brandName}}" ng-repeat="p in editbrandsDropDown" value="{{p.id}}" class="form-control">{{p.brandName}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="row" style="padding-top: 15px;">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2">
                                     <label for="username">Product Name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.Prefix.$dirty && form.Prefix.$error.required }">
-
-                                        <input type="text" name="Prefix" id="Prefix"
-                                            class="form-control" ng-model="productName" required /> <label
-                                            style="font-weight: 100; font-size: 13px;">Prefix</label> <span
-                                            ng-show="form.Prefix.$dirty && form.Prefix.$error.required"
-                                            class="help-block">Prefix is Required</span>
+                                    <div class="form-group">
+                                        <input type="text" ng-if="showEditProduct"class="form-control" ng-model="productName" ng-disabled=true required />
+                                        <select  ng-if="hideEditProduct" class="form-control" ng-model="productNameS">
+                                       <!--  <option disabled selected value=""> -- select a product -- </option> -->
+                                            <option  ng-repeat="p in productDropDown" value="{{p.id}}" class="form-control">{{p.productname}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-
                             <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2">
                                     <label for="model">Model Number</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
-
-                                        <input type="text" name="street" id="street"
-                                            class="form-control" ng-model="modelNumber" required /> <label
-                                            style="font-weight: 100; font-size: 13px;">Model Number</label> <span
-                                            ng-show="form.street.$dirty && form.street.$error.required"
-                                            class="help-block">Street Address is required</span>
+                                    <div class="form-group">
+                                        <input type="text" name="street" id="street" class="form-control" ng-model="modelNumber" required />
+                                
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md-2"><label for="serial">Serial Number</label></div>
-                                <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
-
-                                        <input type="text" name="street1" id="street1"
-                                            class="form-control" ng-model="serialNumber" required /> <label
-                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
-                                            ng-show="form.street1.$dirty && form.street1.$error.required"
-                                            class="help-block">Street Address Line2 Required </span>
-                                    </div>
+                                <div class="col-md-2">
+                                    <label for="serial">Serial Number</label>
                                 </div>
-                            </div> 
-                            
-                          <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-2"><label for="serial">MRP</label></div>
                                 <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
-
-                                        <input type="text" name="street1" id="street1"
-                                            class="form-control" ng-model="mrp" required /> <label
-                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
-                                            ng-show="form.street1.$dirty && form.street1.$error.required"
-                                            class="help-block">Street Address Line2 Required </span>
+                                    <div class="form-group" >
+                                        <input type="text" name="street1" id="street1" class="form-control" ng-model="serialNumber" required />
+                                        
                                     </div>
                                 </div>
                             </div>
-                            
-                           <div class="row">
+                            <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md-2"><label for="serial">DP</label></div>
+                                <div class="col-md-2">
+                                    <label for="serial">MRP</label>
+                                </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
-
-                                        <input type="text" name="street1" id="street1"
-                                            class="form-control" ng-model="dp" required /> <label
-                                            style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
-                                            ng-show="form.street1.$dirty && form.street1.$error.required"
-                                            class="help-block">Street Address Line2 Required </span>
+                                    <div class="form-group" >
+                                        <input type="text" name="street1" id="street1" class="form-control" ng-model="mrp" required />
+                                        
                                     </div>
                                 </div>
                             </div>
-                            
-                             <div class="row">
+                            <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md-2"><label for="serial">Godown Name</label></div>
+                                <div class="col-md-2">
+                                    <label for="serial">DP</label>
+                                </div>
                                 <div class="col-md-6">
-                                    <div class="form-group"
-                                        ng-class="{ 'has-error': form.street1.$dirty && form.street1.$error.required }">
-
-										 <select class="form-control">  
-										                                    
-                                          <option selected  ng-repeat="p in godownsDropDown" value="{{p.id}}" class="form-control">{{p.godownName}}</option>         
-                                 		</select>
-                                 
-                                       <!--  <input type="text" name="street1" id="street1"
+                                    <div class="form-group" >
+                                        <input type="text" name="street1" id="street1" class="form-control" ng-model="dp" required />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <label for="serial">Godown Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" >
+                             <!--        <input type="text" name="street1" id="street1" class="form-control" ng-model="godown" required /> -->
+                                        <select class="form-control" ng-model="editedSelectedGodown">
+                                       <!--  <option disabled selected value=""> -- select a product -- </option> -->
+                                            <option ng-selected="{{p.godownName == godown}}" ng-repeat="p in godownsAvailabe" value="{{p.id}}" class="form-control">{{p.godownName}}</option>
+                                        </select>
+                                        <!--  <input type="text" name="street1" id="street1"
                                             class="form-control" ng-model="godownName" required /> <label
                                             style="font-weight: 100; font-size: 13px;">Serial Number</label> <span
                                             ng-show="form.street1.$dirty && form.street1.$error.required"
@@ -174,96 +138,74 @@ $('span').tooltip();
                                     </div>
                                 </div>
                             </div>
-                            
-                            
                             <div class="row" style="padding-bottom: 11px;">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-2"></div>
-
                                 <div class="col-md-" style="padding-left: 70px;">
                                     <div class="form-actions">
-                                        <button type="submit" ng-disabled="form.$invalid "
-                                            class="btn btn-primary">Submit</button>
-
-                                        <button type="submit" ng-disabled="form.$pristine "
-                                            ng-click="clearForm()" class="btn btn-primary">Reset</button>
-
+                                        <button type="submit" ng-disabled="form.$invalid " class="btn btn-primary">Submit</button>
+                                  <!--       <button type="submit" ng-disabled="form.$pristine " ng-click="clearForm()" class="btn btn-primary">Reset</button> -->
                                     </div>
-
-
                                 </div>
                             </div>
                     </div>
-
-
                     </form>
                 </div>
             </div>
             <!-- Prashant model box end here -->
-            
-            
-</div>
-        <div class="col-lg-12">  
-                <table class="table table-striped">
-                    <thead >
-                            <tr>
-                                <th ng-click="sort('brand.brandName')" >Brand Name 
-                                <span class="glyphicon sort-icon" ng-show="sortKey=='brand.brandName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th ng-click="sort('product.productname')">Product
-                                <span class="glyphicon sort-icon" ng-show="sortKey=='product.productname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th ng-click="sort('modelNumber')">Model Number
-                                  <span class="glyphicon sort-icon" ng-show="sortKey=='modelNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th ng-click="sort('serialNumber')">Serial Number
-                                  <span class="glyphicon sort-icon" ng-show="sortKey=='serialNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th ng-click="sort('mrp')">MRP
-                                  <span class="glyphicon sort-icon" ng-show="sortKey=='mrp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th ng-click="sort('dp')">DP
-                                  <span class="glyphicon sort-icon" ng-show="sortKey=='dp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th ng-click="sort('godown.godownName')">Godown Name
-                                  <span class="glyphicon sort-icon" ng-show="sortKey=='godown.godownName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                                </th>
-                                <th>Avability</th>
-                                <th>Edit</th>
-                       
-                            </tr>
-                    </thead>
-                    <tbody>
-                            <tr dir-paginate="x in viewItem |filter : searchItem | itemsPerPage:50 | orderBy: sortKey:reverse">
-                                <td>{{x.brand.brandName}}</td>
-                                <td>{{x.product.productname}}</td>
-                                <td>{{x.modelNumber}}</td>
-                                <td>{{x.serialNumber}}</td>
-                                <td>{{x.mrp}}</td>
-                                <td>{{x.dp}}</td>
-                                <td>{{x.godown.godownName}}</td>
-                                <td><span  ng-if="x.status!=0"class="glyphicon glyphicon-ok-circle" data-placement="right" data-toggle="tooltip" data-original-title="In Stock "style="font-size:28px;color:green"></span>
-<span ng-if="x.status==0" class="fa fa-times-circle-o" data-placement="right" data-toggle="tooltip" data-original-title="Out Of Stock" style="font-size:32px;color:Red"></span>
-                                </td>
-                                
-                              <td><a href='' ng-click="updateItemById(x.id)"><span
+        </div>
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th ng-click="sort('brand.brandName')">Brand Name
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='brand.brandName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('product.productname')">Product
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='product.productname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('modelNumber')">Model Number
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='modelNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('serialNumber')">Serial Number
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='serialNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('mrp')">MRP
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='mrp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('dp')">DP
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='dp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('godown.godownName')">Godown Name
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='godown.godownName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th>Avability</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="x in viewItem |filter : searchItem | itemsPerPage:50 | orderBy: sortKey:reverse">
+                        <td>{{x.brand.brandName}}</td>
+                        <td>{{x.product.productname}}</td>
+                        <td>{{x.modelNumber}}</td>
+                        <td>{{x.serialNumber}}</td>
+                        <td>{{x.mrp}}</td>
+                        <td>{{x.dp}}</td>
+                        <td>{{x.godown.godownName}}</td>
+                        <td><span ng-if="x.status!=0" class="glyphicon glyphicon-ok-circle" data-placement="right" data-toggle="tooltip" data-original-title="In Stock " style="font-size:28px;color:green"></span>
+                            <span ng-if="x.status==0" class="fa fa-times-circle-o" data-placement="right" data-toggle="tooltip" data-original-title="Out Of Stock" style="font-size:32px;color:Red"></span>
+                        </td>
+                        <td><a href='' ng-click="updateItemById(x.id)"><span
                                 class="glyphicon glyphicon-pencil" data-placement="right"
                                 data-toggle="tooltip" data-original-title="In Stock "
                                 style="font-size: 15px; color: blue"></span></a></td>
-                                
-                            </tr>
-                        
-                    </tbody>
-                </table>
-               <div style="text-align:center">
-                          <dir-pagination-controls
-                          max-size="5"
-                          direction-links="true"
-                          boundary-links="true" >
-                          </dir-pagination-controls> 
-                        </div>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align:center">
+                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                </dir-pagination-controls>
+            </div>
         </div>
-
-
-</div>
+    </div>
