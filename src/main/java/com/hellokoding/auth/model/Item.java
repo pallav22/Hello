@@ -16,9 +16,10 @@ import javax.persistence.Table;
 
 
 @NamedQueries({
-	  @NamedQuery(name="Item.findByModel",query="SELECT e FROM Item e WHERE status=1 and e.modelNumber = ?1"),
-	  @NamedQuery(name="Item.inStock",query="SELECT e FROM Item e WHERE status=1")
-	})
+    @NamedQuery(name="Item.findByModel",query="SELECT e FROM Item e WHERE status=1 and e.modelNumber = ?1"),
+    @NamedQuery(name="Item.inStock",query="SELECT e FROM Item e WHERE status=1"),
+    @NamedQuery(name="Item.availableStockCount",query="select count(*) from Item WHERE status=?1")
+  })
 public class Item {
 
 	private Long id;
@@ -74,7 +75,7 @@ public class Item {
 	private Integer Status;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	public Long getId() {
 		return id;
 	}

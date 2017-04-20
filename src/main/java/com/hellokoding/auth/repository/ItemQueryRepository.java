@@ -12,6 +12,7 @@ public interface ItemQueryRepository extends Repository<Item, Long> {
 	List<Item> findByModel(String modelNumber);
 	
 	List<Item> inStock();
-
+	
+    int availableStockCount(int status);
 
 }

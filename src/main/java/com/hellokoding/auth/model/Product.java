@@ -17,7 +17,7 @@ public class Product {
 	private Brand brand;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 	public Long getId() {
 		return id;
 	}

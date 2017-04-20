@@ -306,4 +306,12 @@ public class Controller {
 	}
 	
 	
+	// April -6th items available Stock count
+    @RequestMapping(value = "/api/items/count", method = RequestMethod.GET)
+    public int getAvailableItemCount(@RequestParam(value = "status", required = true) String status) {
+        int count = itemservice.itemsInStockCount(status);
+        return count;
+    }
+	
+	
 }

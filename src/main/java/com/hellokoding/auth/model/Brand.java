@@ -16,7 +16,7 @@ public class Brand {
 	private String brandname;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 	public Long getId() {
 		return id;
 	}

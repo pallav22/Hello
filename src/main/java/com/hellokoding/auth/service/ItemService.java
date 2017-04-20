@@ -12,5 +12,8 @@ public interface ItemService {
 	public List<Item> findByModel(String modelNumber);
 	
 	public List<Item> availableItemsInStock();
+	
+    public int itemsInStockCount(String status);
+
 
 }

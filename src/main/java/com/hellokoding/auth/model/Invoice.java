@@ -55,7 +55,7 @@ public class Invoice {
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	public int getInvoiceId() {
 		return invoiceId;
 	}

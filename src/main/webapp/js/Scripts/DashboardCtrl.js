@@ -9,11 +9,19 @@ sanjivikaElectronics.controller('DashboardCtrl', function ($scope, Idle, Keepali
 		}]);
 	
 	$scope.countItem='';
+	$scope.outOfStock='';
 	
-	 $http.get('userController/api/items').then(function(response){ 
+	 $http.get('userController/api/items/count?status=1').then(function(response){ 
 
-		    $scope.countItem = response.data.length;
+		    $scope.countItem = response.data;
 		    console.log($scope.countItem);
+		    
+		    });
+	 
+	 $http.get('userController/api/items/count?status=0').then(function(response){ 
+
+		    $scope.outOfStock = response.data;
+		    console.log($scope.outOfStock);
 		    
 		    });
 	 

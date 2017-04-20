@@ -44,5 +44,12 @@ public class ItemServiceImpl implements ItemService {
 		itemQueryRepository.inStock().forEach(items::add);
 		return items;
 	}
+	
+	@Override
+    public int itemsInStockCount(String status) {
+        int value = Integer.parseInt(status);
+        return itemQueryRepository.availableStockCount(value);
+
+    }
 
 }

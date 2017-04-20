@@ -16,7 +16,7 @@ public class Godown{
 	private String godownName;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 	public Long getId() {
 		return id;
 	}
