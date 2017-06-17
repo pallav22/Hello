@@ -12,11 +12,27 @@
 
 </head>
 <style type="text/css">
+
+
+.table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #333 !important;
+}
+tbody td, thead th {
+    /* width: 20%; */ /* Optional */
+    border-right: 1px solid black;
+    /* white-space: nowrap; */
+}
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #333;
+}
 .form-group {
 	margin-bottom: 0px;
 }
-input::-webkit-input-placeholder {color: black !important;
-font-weight: bold;} 
+
 @media print {
 	#shopaddress {
 		display: none;
@@ -136,7 +152,8 @@ font-weight: bold;}
 										<th>Selling Price</th>
 										<th>Dealer Price</th>
 										<th>Godown Name</th>
-										<th>VAT %</th>
+										<th>GST %</th>
+										<th>IGST %</th>
 										<th>Check box</th>
 									</tr>
 								</thead>
@@ -151,6 +168,11 @@ font-weight: bold;}
 										<td ng-model="x.dp">{{x.dp}}</td>
 										<td ng-model="x.godown.godownName">{{x.godown.godownName}}</td>
 										<td><select ng-model="VAT">
+												<option value="0" selected>N/A</option>
+												<option value="6">6</option>
+												<option value="15">15</option>
+										</select></td>
+										<td><select disabled ng-model="VAT">
 												<option value="0" selected>N/A</option>
 												<option value="6">6</option>
 												<option value="15">15</option>
@@ -425,7 +447,7 @@ font-weight: bold;}
 
 			<div class="vcard" id="company-address">
 				<h2>
-					<strong style="font-size: 20px;">Retail Invoice</strong><br> <br>
+					<strong style="font-size: 20px;">TAX Invoice</strong><br> <br>
 					<strong> Invoice No{{invoiceNumber}}</strong>
 				</h2>
 				<h4>
@@ -435,8 +457,9 @@ font-weight: bold;}
 					<small style="font-size: 17px !important;"> Authorized
 						Dealer</small>
 				</h6>
-				<span>TIN (VAT): 10301228020</span><br> <span>TIN C.S.T:
-					10301228117</span>
+				<span>GSTIN No-AA070773148GFHJ</span><br>
+				<!--  <span>TIN C.S.T:
+					10301228117</span> -->
 
 			</div>
 			<div id="invoice-info" style="font-size: 16px;">
@@ -456,7 +479,10 @@ font-weight: bold;}
 					</div>
 					<div class="locality">{{state}}</div>
 
-					<div id="your-tax-number">Mob : - {{mobileNo}}</div>
+					<div id="your-tax-number">
+						Mob : - {{mobileNo}} <br> State Code-{{state}} <br>GSTIN No-
+						{{gstin}}
+					</div>
 				</div>
 
 			</div>
@@ -527,8 +553,8 @@ font-weight: bold;}
  -->
 			</div>
 
-			<table id="invoice-amount">
-				<thead>
+			<!-- 	<table id="invoice-amount"> -->
+			<!-- <thead>
 					<tr id="header_row">
 						<th class="quantity_th" style="font-size: 1em; border: 1px solid;">Sr.No</th>
 						<th class="left details_th"
@@ -538,6 +564,13 @@ font-weight: bold;}
 							style="padding-left: 18px; font-size: 1.5em; color: green;"
 							data-placement="right" data-toggle="tooltip"
 							data-original-title="ADD" id="HideSearchModel"></i></th>
+							<th class="" style="font-size: 1em; border: 1px solid;">Sr.No</th>
+							<th class="" style="font-size: 1em; border: 1px solid;">Rate per Item</th>
+							<th class="" style="font-size: 1em; border: 1px solid;">Discount</th>
+							<th class="" style="font-size: 1em; border: 1px solid;">Taxable Value</th>
+							<th class="" style="font-size: 1em; border: 1px solid;" colspan="2">CGST</th>
+							<th class="" style="font-size: 1em; border: 1px solid;">SGST</th>
+							<th class="" style="font-size: 1em; border: 1px solid;">IGST</th>
 						<th class="unitprice_th"
 							style="font-size: 1em; border: 1px solid; padding-right: 5%;"">Unit
 							Price</th>
@@ -584,25 +617,28 @@ font-weight: bold;}
 						<td class=""></td>
 
 					</tr>
-					<!-- <!-- <tr id="total_tr">
+					<!-- <tr id="total_tr">
                         <td colspan="5"><b>Auth.&nbsp;Dealers :- </b> <br> SAMSUNG &#x2595;&nbsp; SONY  &#x2595;&nbsp; Whirpool  &#x2595;&nbsp;L.G &#x2595; SANSUI  &#x2595;&nbsp;Carrier &#x2595;&nbsp; lenovo  &#x2595;&nbsp;Dell  &#x2595;&nbsp;
                         Haier &#x2595;&nbsp;Nikon &#x2595;&nbsp;PHILIPS &#x2595;&nbsp;KENT &#x2595;&nbsp;hp &#x2595;&nbsp;EUREKA FORBES &#x2595;&nbsp;IFB &#x2595;&nbsp;</td>
                         <td colspan="2" class="total" id="total_currency"><span
                             class="currency"> </span></td>
                         <td class=""></td>
 
-                    </tr> -->
+                    </tr>
 					</tr>
 
 				</tfoot>
 				<tbody>
-					<!--   <tr class="item odd">
+			<tr class="item odd">
                         <td class="item_l">sr no</td>
                         <td class="item_l">Product Details</td>
                         <td class="item_r">Unit Price</td>
                         <td class="item_r">VAT</td>
                         <td class="item_r">Net Subtotal</td>
-                    </tr> -->
+                                 <td class="item_r">Net Subtotal</td>
+                                          <td class="item_r">Net Subtotal</td>
+                                                   <td class="item_r">Net Subtotal</td>
+                    </tr> 
 					<tr class="item" ng-repeat="bill in tableData"
 						style="height: 100px;">
 						<td class="item_l" style="font-size: 15px;">{{$index+1}}</td>
@@ -614,54 +650,158 @@ font-weight: bold;}
 						<td class="item_r" style="font-size: 15px;">Rs.
 							{{bill.unitPrice + bill.vatAmount}}</td>
 					</tr>
-					<!--  <tr class="item odd">
+					 <tr class="item odd">
                         <td class="item_l"></td>
                         <td class="item_l"></td>
                         <td class="item_r"></td>
                         <td class="item_r"></td>
                         <td class="item_r"></td>
                     </tr> -->
+			<!-- </tbody> -->
+			<table class="table" style="
+    border: 1px solid;
+">
+				<thead>
+					<tr>
+						<th>Sr No</th>
+						<th>Description of Goods <i ng-if="showsearchicon" onclick="openModelSerachProduct();"
+							class="fa fa-search"
+							style="padding-left: 18px; font-size: 1.5em; color: green;"
+							data-placement="right" data-toggle="tooltip"
+							data-original-title="ADD" id="HideSearchModel"></i> </th>
+							<th>HSN</th>
+						<th>Unit</th>
+						<th>Rate (per item)</th>
+						<th>Total</th>
+						<th>Discount</th>
+						<th>Taxable value </th>
+						<th colspan="2">CGST <br>rate % &nbsp &nbsp &nbsp Amt</th>
+						<th colspan="2">SGST  <br>rate % &nbsp &nbsp &nbsp Amt </th>
+						<th colspan="2">IGST  <br>rate % &nbsp &nbsp &nbsp Amt</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="bill in tableData">
+						<td scope="row">{{$index+1}}</td>
+						<td>{{bill.brandName}}&nbsp;/&nbsp;{{bill.productName}}&nbsp;/&nbsp;{{bill.modelNumber}}&nbsp;/&nbsp;{{bill.serialNumber}}</td>
+								<td>{{bill.HSN_Number}}</td>
+						<td>1</td>
+						<td>Rs.
+							{{bill.unitPrice}}</td>
+							<td>Rs.
+							{{bill.unitPrice}}</td>
+						<td>Rs.0</td>
+						<td>Rs.
+							{{bill.unitPrice}}</td>
+						<td>{{bill.vatPercent}}</td>
+						<td>Rs.
+							&nbsp;{{bill.vatAmount}}&nbsp;&nbsp;</td>
+					<td>{{bill.vatPercent}}</td>
+						<td>Rs.
+							&nbsp;{{bill.vatAmount}}&nbsp;&nbsp;</td>
+		<td>Nil</td>
+						<td>Nil</td>
+					</tr>
+				
 				</tbody>
+				<thead>
+					<tr>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;">TOTAL</th>
+						<th style="border-right-color: white;"></th>
+						<th ></th>
+								<th ></th>
+						<th>Rs.{{unitTotal | number:2}}</th>
+						<th>Rs.0</th>
+						<th>Rs.{{unitTotal | number:2}} </th>
+						<th colspan="2">Rs.&nbsp;{{TotalVat/2 | number:2}} </th>
+						<th colspan="2">Rs.&nbsp;{{TotalVat/2 | number:2}} </th>
+						<th colspan="2">Rs.0</th>
+					</tr>
+				</thead>
+			
 			</table>
-
+			<table class="table" style="
+    border: 1px solid;
+">
+				<thead>
+					<tr>
+						<th style="border-right-color: white;">Total Invoice Value (In Words)&nbsp;{{InWordsTotalamount}}</th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;" ></th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;"></th>
+						<th ></th>
+						<th colspan="2" style="border-right-color: white;"> </th>
+						<th colspan="2" style="border-right-color: white;">Rs.&nbsp;{{Totalamount | number:2}} </th>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
+					<thead>
+					<tr>
+						<th style="border-right-color: white;">WHETHER THE TAX IS PAYABLE ON REVERSE CHARGE BASIS</th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;" ></th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;"></th>
+						<th ></th>
+						<th colspan="2" style="border-right-color: white;"> </th>
+						<th colspan="2" style="border-right-color: white;">YES/NO </th>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
+					<thead>
+					<tr>
+						<th style="border-right-color: white;">Signature</th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;" ></th>
+						<th style="border-right-color: white;"></th>
+						<th style="border-right-color: white;"></th>
+						<th ></th>
+						<th colspan="2" style="border-right-color: white;"> </th>
+						<th colspan="2" style="border-right-color: white;">EBN (if any) </th>
+						<th colspan="2"></th>
+					</tr>
+				</thead></table>
+			
 			<button id="saveandprint" class="btn btn-primary"
 				onclick="myFunction()">Save & Print</button>
 		</div>
-		
 
 
-<script>
-	function myFunction() {
-		window.print();
-	}
-	$(document).ready(function() {
 
-		$('#modelSearch').modal('show');
+		<script>
+			function myFunction() {
+				window.print();
+			}
+			$(document).ready(function() {
 
-	});
-	function openCustomermodel() {
+			});
+			function openCustomermodel() {
 
-		$('#modelSearch').modal('show');
-	}
+				$('#modelSearch').modal('show');
+			}
 
-	/*   function openModelAddCustomer() {
-	      debugger;
-	      $('#modelAddCustomer').modal('show');
-	  }
-	 */
-	function openModelSerachProduct() {
+			/*   function openModelAddCustomer() {
+			      debugger;
+			      $('#modelAddCustomer').modal('show');
+			  }
+			 */
+			function openModelSerachProduct() {
 
-		$('#ModelProductSearch').modal('show');
-	}
-	// $(document).ready(function () {
-	//  $('#modelAddCustomer').modal('hide');
-	//     // $('#modelAddCustomer').modal('show');
+				$('#ModelProductSearch').modal('show');
+			}
+			// $(document).ready(function () {
+			//  $('#modelAddCustomer').modal('hide');
+			//     // $('#modelAddCustomer').modal('show');
 
-	// });
+			// });
 
-	$('i').tooltip();
-	// $('#client-details').tooltip();
-	//limit check box click
-</script>
-
+			$('i').tooltip();
+			// $('#client-details').tooltip();
+			//limit check box click
+		</script>
 </html>

@@ -115,8 +115,9 @@ sanjivikaElectronics
 					$scope.addToBill = false;
 					$scope.DetailsForBill = [];
 					$scope.detailsStoredForId = [];
-					$scope.tableData;
-
+					$scope.tableData = [];
+					$scope.tableData1;
+                    $scope.unitTotal=0;
 					/* document.getElementById("AddtoBill").disabled=true; */
 
 					$scope.clearForm = function() {
@@ -213,6 +214,8 @@ sanjivikaElectronics
 											$scope.postal = $scope.searchedCustomer[0].postal;
 											$scope.mobileNo = $scope.searchedCustomer[0].mobile;
 											$scope.Email = $scope.searchedCustomer[0].Email;
+											$scope.gstin=$scope.searchedCustomer[0].gstin;
+											$scope.state=$scope.searchedCustomer[0].state;
 										});
 
 					};
@@ -318,15 +321,32 @@ sanjivikaElectronics
 													.then(
 															function(response) {
 																$scope.Invoice = response.data;
-																$scope.tableData = $scope.Invoice[$scope.Invoice.length - 1].item;
+																$scope.tableData1 = $scope.Invoice[$scope.Invoice.length - 1].item;
 																$scope.invoiceNumber = $scope.Invoice[$scope.Invoice.length - 1].invoiceId;
 																$scope.Date1 = $scope.Invoice[$scope.Invoice.length - 1].date;
+																debugger;
+																$scope.tableData=[];
+																$scope.unitTotal=0;
+																for (var i = 0; i < $scope.tableData1.length; i++) {
+																	$scope.tableData.push({'brandName':$scope.tableData1[i].brand.brandName,
+																		'productName':$scope.tableData1[i].product.productname.split('-')[0],
+																		'HSN_Number':$scope.tableData1[i].product.productname.split('-')[1],
+																		'modelNumber':$scope.tableData1[i].modelNumber,
+																		'serialNumber':$scope.tableData1[i].serialNumber,
+																		'unitPrice':$scope.tableData1[i].unitPrice,
+																		'vatPercent':($scope.tableData1[i].vatPercent)/2,
+																		'vatAmount':($scope.tableData1[i].vatAmount)/2})
+																		 $scope.unitTotal=($scope.unitTotal+(Math
+																			.round($scope.tableData1[i].unitPrice* 100) / 100));
+																	}
+																debugger
 															});
 										})
 								.error(function(data, status, headers, config) {
 									$scope.msg = "Unable to save";
 
 								});
+					
 
 					}
 					$scope.closeModel = function() {

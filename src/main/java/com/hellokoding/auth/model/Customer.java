@@ -36,6 +36,7 @@ public class Customer implements Serializable {
 	private String mobile;
 	private Long postal;
 	private String email;
+	private String gstin;
 
 	public Long getId() {
 		return id;
@@ -132,5 +133,15 @@ public class Customer implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getGstin() {
+		return gstin;
+	}
+
+	public void setGstin(String gstin) {
+		this.gstin = gstin;
+	}
+	
+	
 
 }

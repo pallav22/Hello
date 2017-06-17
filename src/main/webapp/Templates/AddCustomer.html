@@ -116,6 +116,28 @@
                                 </div>
                              </div>
                   </div>
+                   <div class="row">
+                          <div class="col-md-2">
+                                  
+                             </div>
+                           <div class="col-md-2">
+                                
+                             </div>
+                              <div class="col-md-3">
+                                    <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
+                                     <!--  <label for="username">First name</label> -->
+                                      <input type="text" name="statecode" id="statecode" class="form-control" ng-model="statecode" required />
+                                      <label style="font-weight: 100;font-size: 13px;" >State Code</label>
+                                      <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">State Code</span>
+                                </div>
+                             </div>
+                              <div class="col-md-2">
+                                    <div class="form-group">
+                                     <input type="text" name="GstIN" id="GstIN" class="form-control" ng-model="GstIN" required />
+                                      <label style="font-weight: 100;font-size: 13px;" >Gst IN</label> 
+                                </div>
+                             </div>
+                  </div>
                  <div class="row">
                         <div class="col-md-2">
                                   

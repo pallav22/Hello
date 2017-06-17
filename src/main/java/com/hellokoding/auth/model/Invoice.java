@@ -32,7 +32,7 @@ public class Invoice {
 	private String invStatus;
 	
 
-	private String cancelReason;
+	//private String cancelReason;
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id", nullable = false)
@@ -96,13 +96,13 @@ public class Invoice {
 		this.invStatus = invStatus;
 	}
 
-	public String getCancelReason() {
+	/*public String getCancelReason() {
 		return cancelReason;
 	}
 
 	public void setCancelReason(String cancelReason) {
 		this.cancelReason = cancelReason;
-	}
+	}*/
 
 	
 	

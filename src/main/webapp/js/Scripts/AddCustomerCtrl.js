@@ -4,8 +4,15 @@ sanjivikaElectronics.controller('AddCustomerCtrl',
 			$scope.phoneNumbr = /^\d{10}$/;
 			$scope.postalV = /^\d{6}$/;
             $scope.Prefix = "Mr";
+            $scope.GstIN = "IF ANY";
+            $scope.statecode = "BR";
+            
 			$scope.clearForm = function() {
-				$scope.Prefix = "";
+				$scope.mCode = "+91";
+				$scope.Prefix = "Mr";
+				  $scope.GstIN = "IF ANY";
+		            $scope.statecode = "BR";
+//				$scope.Prefix = "";
 				$scope.firstName = "";
 				$scope.secondName = "";
 				$scope.street = "";
@@ -30,10 +37,11 @@ sanjivikaElectronics.controller('AddCustomerCtrl',
 				          "street":$scope.street,
 				          "street1":$scope.street1,
 				          "city":$scope.city,
-				          "state":"Bihar",
+				          "state":$scope.statecode,
 				          "mobile":$scope.mobileNo,
 				          "postal":$scope.postal,
-				          "email":$scope.Email
+				          "email":$scope.Email,
+				          "gstin":$scope.GstIN
 				           
 				        };
 				    // debugger;
